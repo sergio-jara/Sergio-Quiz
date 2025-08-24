@@ -20,7 +20,7 @@ struct QuizTabView: View {
                 mainContent
             }
             .navigationTitle(DesignSystem.Text.Quiz.tabTitle)
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 if !userName.isEmpty && viewModel.currentQuestion == nil && !viewModel.isLoading {
                     viewModel.startQuiz(with: userName)
