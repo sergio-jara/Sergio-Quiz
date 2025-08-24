@@ -91,6 +91,37 @@ struct DesignSystem {
         static let slow: SwiftUI.Animation = .easeInOut(duration: 0.5)
         static let spring: SwiftUI.Animation = .spring(response: 0.5, dampingFraction: 0.8)
     }
+    
+    
+    // MARK: - Icons
+    struct Icons {
+        // Main App Icons
+        static let brainProfile = "brain.head.profile"
+        static let play = "play.fill"
+
+        
+    }
+    
+    // MARK: - Text
+    struct Text {
+        // MARK: - Welcome Feature
+        struct Welcome {
+            static let title = "Welcome to Dynamox Quiz!"
+            static let subtitle = "Test your knowledge with our interactive quiz"
+            static let namePrompt = "Please enter your name to begin"
+            static let namePlaceholder = "Your name"
+            static let startButton = "Start Quiz"
+            static let nameValidationError = "Name must be between 2 and 50 characters"
+            static let footerTitle = "Ready to challenge yourself?"
+            static let footerSubtitle = "10 questions • Multiple choice • Instant feedback"
+        }
+        
+        // MARK: - Quiz Feature
+        struct Quiz {
+            static let tabTitle = "Quiz"
+        }
+    }
+    
 }
 
 // MARK: - Shadow Structure
