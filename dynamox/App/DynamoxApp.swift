@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct dynamoxApp: App {
+struct DynamoxApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            
         }
     }
 }
