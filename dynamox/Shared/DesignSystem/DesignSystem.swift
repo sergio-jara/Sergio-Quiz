@@ -97,7 +97,29 @@ struct DesignSystem {
     struct Icons {
         // Main App Icons
         static let brainProfile = "brain.head.profile"
+        static let quiz = "brain.head.profile"
+        static let results = "chart.bar.fill"
         static let play = "play.fill"
+        
+        // Navigation & UI Icons
+        static let chevronRight = "chevron.right"
+        static let chevronLeft = "chevron.left"
+        static let checkmark = "checkmark"
+        static let xmark = "xmark"
+        static let arrowRight = "arrow.right"
+        static let arrowLeft = "arrow.left"
+        
+        // Quiz-specific Icons
+        static let trophy = "trophy.fill"
+        static let star = "star.fill"
+        static let timer = "timer"
+        static let questionMark = "questionmark.circle"
+        
+        // Common UI Icons
+        static let settings = "gearshape"
+        static let info = "info.circle"
+        static let warning = "exclamationmark.triangle"
+        static let error = "exclamationmark.circle"
 
         
     }
@@ -119,6 +141,66 @@ struct DesignSystem {
         // MARK: - Quiz Feature
         struct Quiz {
             static let tabTitle = "Quiz"
+            static let resultsTabTitle = "Results"
+            static let readyToStart = "Ready to start the quiz?"
+            static let tapWelcomeToBegin = "Tap the welcome button to begin"
+            static let questionNumber = "Question %d of %d"
+            static let nextButton = "Next"
+            static let submitButton = "Submit"
+            static let loadingQuestions = "Loading questions..."
+            static let errorLoadingQuestions = "Error loading questions. Please try again."
+            static let timeRemaining = "Time remaining: %d seconds"
+            static let correctAnswer = "Correct!"
+            static let incorrectAnswer = "Incorrect!"
+            static let explanation = "Explanation:"
+            static let helloFormat = "Hello, %@!"
+            static let questionNumberFormat = "Question %d of %d"
+            static let selectAnswer = "Select your answer:"
+            static let submitAnswer = "Submit Answer"
+            static let finishQuiz = "Finish Quiz"
+            static let nextQuestion = "Next Question"
+            static let noQuestionAvailable = "No question available"
+            static let loadQuestion = "Load Question"
+            static let error = "Error"
+            static let ok = "OK"
+            static let unknownError = "An unknown error occurred"
+            static let loadingQuestion = "Loading question..."
+        }
+        
+        // MARK: - Results Feature
+        struct Results {
+            static let tabTitle = "Results"
+            static let performanceTitle = "Your Quiz Performance"
+            static let totalQuizzes = "Total Quizzes"
+            static let averageScore = "Average Score"
+            static let recentResults = "Recent Results"
+            static let completeQuizForResults = "Complete a quiz to see your results here"
+            static let quizComplete = "Quiz Complete!"
+            static let congratulationsFormat = "Congratulations, %@!"
+            static let score = "Score"
+            static let percentage = "Percentage"
+            static let performance = "Performance"
+            static let restartQuiz = "Restart Quiz"
+            static let backToWelcome = "Back to Welcome"
+            static let scoreTitle = "Your Score"
+            static let congratulations = "Congratulations!"
+            static let goodJob = "Good job!"
+            static let keepTrying = "Keep trying!"
+            static let scoreFormat = "%d out of %d"
+            static let percentageFormat = "%.0f%%"
+            static let correctAnswers = "Correct Answers: %d"
+            static let incorrectAnswers = "Incorrect Answers: %d"
+            static let timeSpent = "Time Spent: %d seconds"
+            static let averageTime = "Average Time: %.1f seconds"
+            static let noResultsYet = "No results yet. Take a quiz to see your performance!"
+            static let takeAnotherQuiz = "Take Another Quiz"
+            
+            // MARK: - Score Messages
+            static let excellentScore = "Excellent! You're a quiz master!"
+            static let greatScore = "Great job! You know your stuff!"
+            static let goodScore = "Good effort! Keep learning!"
+            static let fairScore = "Not bad! Room for improvement!"
+            static let poorScore = "Keep practicing! You'll get better!"
         }
     }
     

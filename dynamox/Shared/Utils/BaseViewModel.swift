@@ -38,26 +38,4 @@ class BaseViewModel: ObservableObject {
         isLoading = loading
     }
     
-    // MARK: - Async Task Wrapper
-    func performAsyncTask<T>(
-        _ task: @escaping () async throws -> T,
-        completion: @escaping (T) -> Void) {
-            Task {
-                do {
-                    setLoading(true)
-                    clearError()
-                    let result = try await task()
-                    await MainActor.run {
-                        completion(result)
-                        setLoading(false)
-                    }
-                } catch {
-                    await MainActor.run {
-                        handleError(error)
-                        setLoading(false)
-                    }
-                }
-            }
-        }
-    
 }
