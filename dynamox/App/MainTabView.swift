@@ -14,7 +14,12 @@ struct MainTabView: View {
     
     var body: some View {
         TabView {
-            Text("Quiz")
+            QuizTabView(
+                viewModel: ServiceContainer.shared.makeQuizViewModel(),
+                coordinator: ServiceContainer.shared.makeQuizCoordinator(),
+                userName: userName,
+                showingWelcome: $showingWelcome
+            )
                 .tabItem{
                     Image(systemName: DesignSystem.Icons.brainProfile)
                     Text(DesignSystem.Text.Quiz.tabTitle)
