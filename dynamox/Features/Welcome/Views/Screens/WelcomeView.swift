@@ -25,10 +25,10 @@ struct WelcomeView: View {
             // Header
             VStack(spacing: DesignSystem.Spacing.lg) {
                 Image(systemName: DesignSystem.Icons.brainProfile)
-                    .font(.system(size: 100))
+                    .font(.system(size: 50))
                     .foregroundColor(DesignSystem.Colors.primary)
                 Text(DesignSystem.Text.Welcome.title)
-                    .heading1()
+                    .heading3()
                     .multilineTextAlignment(.center)
                 
                 Text(DesignSystem.Text.Welcome.subtitle)
