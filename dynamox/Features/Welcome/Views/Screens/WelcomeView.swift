@@ -114,9 +114,6 @@ struct WelcomeView: View {
         }
         .standardPadding()
         .standardBackground()
-        .onAppear() {
-            isNameFieldFocused = true
-        }
     }
     
     private func startQuiz() {
