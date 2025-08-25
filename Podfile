@@ -6,6 +6,7 @@ target 'dynamox' do
   use_frameworks!
 
   # Pods for dynamox
+  pod 'RealmSwift'
 
 end
 
