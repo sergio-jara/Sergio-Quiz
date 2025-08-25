@@ -47,6 +47,9 @@ struct WelcomeView: View {
                 Text(DesignSystem.Text.Welcome.namePrompt)
                     .heading3()
                     .foregroundColor(DesignSystem.Colors.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .frame(height: 60, alignment: .center)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 VStack(alignment: .leading, spacing: DesignSystem.Spacing.sm) {
                     TextField(DesignSystem.Text.Welcome.namePlaceholder, text: $viewModel.userName)
