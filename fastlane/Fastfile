@@ -101,14 +101,16 @@ platform :ios do
     scan(
       workspace: "dynamox.xcworkspace",
       scheme: "dynamox",
-      destination: "generic/platform=iOS Simulator",
+      destination: "generic/platform=iOS Simulator,OS=latest",
       clean: true,
       skip_build: false,
       result_bundle: true,
       output_directory: "test_output",
       only_testing: ["dynamoxTests"],
       skip_package_dependencies_resolution: false,
-      disable_package_automatic_updates: true
+      disable_package_automatic_updates: true,
+      skip_detect_devices: true,
+      ensure_devices_found: false
     )
   end
 
