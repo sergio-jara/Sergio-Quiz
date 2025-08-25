@@ -35,7 +35,7 @@ struct QuizView: View {
     
     // MARK: - Quiz Content
     private var quizContent: some View {
-        VStack(spacing: DesignSystem.Spacing.lg) {
+        VStack(spacing: DesignSystem.Spacing.md) {
             // Progress Header
             progressHeader
             
@@ -54,7 +54,7 @@ struct QuizView: View {
     
     // MARK: - Progress Header
     private var progressHeader: some View {
-        VStack(spacing: DesignSystem.Spacing.sm) {
+        VStack(spacing: DesignSystem.Spacing.xs) {
             // User name and progress
             HStack {
                 VStack(alignment: .leading, spacing: DesignSystem.Spacing.xs) {
@@ -81,10 +81,10 @@ struct QuizView: View {
             
             ProgressView(value: Double(viewModel.currentQuestionNumber), total: Double(viewModel.totalQuestions))
                 .progressViewStyle(LinearProgressViewStyle(tint: DesignSystem.Colors.primary))
-                .scaleEffect(x: 1, y: 2, anchor: .center)
+                .scaleEffect(x: 1, y: 1.5, anchor: .center)
         }
         .horizontalPadding()
-        .verticalPadding()
+        .padding(.vertical, DesignSystem.Spacing.sm)
         .background(DesignSystem.Colors.surface)
         .standardCornerRadius()
         .horizontalPadding()
@@ -92,17 +92,20 @@ struct QuizView: View {
     
     // MARK: - Question Content
     private func questionContent(_ question: QuizQuestion) -> some View {
-        VStack(spacing: DesignSystem.Spacing.lg) {
+        VStack(spacing: DesignSystem.Spacing.md) {
             // Question statement
-            VStack(alignment: .leading, spacing: DesignSystem.Spacing.md) {
+            VStack(alignment: .leading, spacing: DesignSystem.Spacing.sm) {
                 Text(question.statement)
                     .textStyle(DesignSystem.Typography.h4, color: DesignSystem.Colors.text)
                     .multilineTextAlignment(.leading)
+                    .lineLimit(nil)
+                    .minimumScaleFactor(0.8)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
             // Answer options
-            VStack(spacing: DesignSystem.Spacing.sm) {
+            VStack(spacing: DesignSystem.Spacing.xs) {
                 Text(DesignSystem.Text.Quiz.selectAnswer)
                     .heading3()
                     .foregroundColor(DesignSystem.Colors.textSecondary)
@@ -121,12 +124,12 @@ struct QuizView: View {
                 }
             }
             
-            // Submit button or Result area (fixed height to prevent layout shifts)
+            // Submit button or Result area (compact height to save space)
             ZStack {
                 // Background placeholder to maintain consistent spacing
                 Rectangle()
                     .fill(Color.clear)
-                    .frame(height: 140)
+                    .frame(height: 100)
                 
                 // Submit button - fixed at bottom
                 if !viewModel.isAnswerSubmitted {
@@ -148,8 +151,8 @@ struct QuizView: View {
                         .frame(maxWidth: .infinity)
                     }
                 } else {
-                    // Result and next question - fixed positioning
-                    VStack(spacing: DesignSystem.Spacing.md) {
+                    // Result and next question - compact positioning
+                    VStack(spacing: DesignSystem.Spacing.sm) {
                         Spacer()
                         ResultView(isCorrect: viewModel.isAnswerCorrect)
                         
@@ -166,7 +169,7 @@ struct QuizView: View {
                     }
                 }
             }
-            .frame(height: 140) // Fixed height to prevent layout shifts
+            .frame(height: 100) // Reduced height to save vertical space
         }
     }
     

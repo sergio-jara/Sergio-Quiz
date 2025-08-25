@@ -12,15 +12,16 @@ struct ResultView: View {
     let isCorrect: Bool
     
     var body: some View {
-        HStack(spacing: DesignSystem.Spacing.sm) {
+        HStack(spacing: DesignSystem.Spacing.xs) {
             Image(systemName: isCorrect ? DesignSystem.Icons.checkmark : DesignSystem.Icons.xmark)
-                .font(.title)
+                .font(.title2)
                 .foregroundColor(isCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error)
             
             Text(isCorrect ? DesignSystem.Text.Quiz.correctAnswer : DesignSystem.Text.Quiz.incorrectAnswer)
-                .textStyle(DesignSystem.Typography.h4, color: isCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error)
+                .textStyle(DesignSystem.Typography.bodyMedium, color: isCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error)
         }
-        .standardPadding()
+        .padding(.horizontal, DesignSystem.Spacing.md)
+        .padding(.vertical, DesignSystem.Spacing.sm)
         .background(
             RoundedRectangle(cornerRadius: DesignSystem.CornerRadius.md)
                 .fill((isCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error).opacity(0.1))
