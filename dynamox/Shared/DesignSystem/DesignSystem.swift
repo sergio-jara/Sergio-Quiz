@@ -124,6 +124,11 @@ struct DesignSystem {
         // Action Icons
         static let restart = "arrow.clockwise"
         static let home = "house.fill"
+        
+        // Statistics & Results Icons
+        static let totalQuizzes = "list.bullet.clipboard"
+        static let averageScore = "chart.line.uptrend.xyaxis"
+        static let noResults = "chart.bar.doc.horizontal"
 
         
     }
