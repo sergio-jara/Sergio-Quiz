@@ -11,6 +11,7 @@ struct WelcomeView: View {
     
     @StateObject private var viewModel: WelcomeViewModel
     @FocusState private var isNameFieldFocused: Bool
+    @State private var keyboardHeight: CGFloat = 0
     
     let onStartQuiz: (String) -> Void
     
@@ -37,6 +38,9 @@ struct WelcomeView: View {
                             .textSecondary)
                     .multilineTextAlignment(.center)
             }
+            .opacity(isNameFieldFocused ? 0 : 1)
+            .scaleEffect(isNameFieldFocused ? 0.8 : 1)
+            .animation(.easeInOut(duration: 0.3), value: isNameFieldFocused)
             
             // Name Input Form
             VStack(spacing: DesignSystem.Spacing.lg) {
@@ -46,11 +50,11 @@ struct WelcomeView: View {
                 
                 VStack(alignment: .leading, spacing: DesignSystem.Spacing.sm) {
                     TextField(DesignSystem.Text.Welcome.namePlaceholder, text: $viewModel.userName)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         .textStyle(DesignSystem.Typography.h4)
-                        .standardPadding()
+                        .padding(.horizontal, DesignSystem.Spacing.md)
+                        .padding(.vertical, DesignSystem.Spacing.sm)
                         .background(DesignSystem.Colors.surface)
-                        .standardCornerRadius()
+                        .cornerRadius(DesignSystem.CornerRadius.md)
                         .overlay(
                             RoundedRectangle(cornerRadius: DesignSystem.CornerRadius.md)
                                 .stroke(viewModel.isNameValid ? DesignSystem.Colors.success : DesignSystem.Colors.border, lineWidth: 2)
@@ -58,7 +62,6 @@ struct WelcomeView: View {
                         .focused($isNameFieldFocused)
                         .onChange(of: viewModel.userName) { oldValue, newValue in
                             viewModel.validateName(newValue)
-                            
                         }
                         .onSubmit {
                             if viewModel.canStartQuiz {
