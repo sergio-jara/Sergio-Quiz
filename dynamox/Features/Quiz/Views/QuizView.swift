@@ -164,8 +164,36 @@ struct QuizView: View {
                 .frame(maxWidth: .infinity)
             } else {
                 // Result and next question
-                VStack(spacing: DesignSystem.Spacing.sm) {
-                    ResultView(isCorrect: viewModel.isAnswerCorrect)
+                VStack(spacing: DesignSystem.Spacing.md) {
+                    // Clean result indicator with subtle animation
+                    HStack {
+                        Spacer()
+                        HStack(spacing: DesignSystem.Spacing.sm) {
+                            Image(systemName: viewModel.isAnswerCorrect ? DesignSystem.Icons.checkmark : DesignSystem.Icons.xmark)
+                                .font(.title2)
+                                .foregroundColor(viewModel.isAnswerCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error)
+                                .scaleEffect(1.2)
+                                .animation(.spring(response: 0.4, dampingFraction: 0.6), value: viewModel.isAnswerCorrect)
+                            
+                            Text(viewModel.isAnswerCorrect ? DesignSystem.Text.Quiz.correctAnswer : DesignSystem.Text.Quiz.incorrectAnswer)
+                                .textStyle(DesignSystem.Typography.bodyMedium, color: viewModel.isAnswerCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error)
+                                .fontWeight(.medium)
+                        }
+                        .padding(.horizontal, DesignSystem.Spacing.md)
+                        .padding(.vertical, DesignSystem.Spacing.sm)
+                        .background(
+                            RoundedRectangle(cornerRadius: DesignSystem.CornerRadius.lg)
+                                .fill(Color.clear)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: DesignSystem.CornerRadius.lg)
+                                        .stroke(viewModel.isAnswerCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error, lineWidth: 2)
+                                )
+                        )
+                        .scaleEffect(1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: viewModel.isAnswerCorrect)
+                        Spacer()
+                    }
+                    .padding(.top, DesignSystem.Spacing.xs)
                     
                     Button(action: {
                         viewModel.nextQuestion()
@@ -180,8 +208,6 @@ struct QuizView: View {
                 }
             }
         }
-        .background(DesignSystem.Colors.surface)
-        .standardCornerRadius()
     }
     
     // MARK: - No Question Content

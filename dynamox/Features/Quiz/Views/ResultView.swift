@@ -20,11 +20,7 @@ struct ResultView: View {
             Text(isCorrect ? DesignSystem.Text.Quiz.correctAnswer : DesignSystem.Text.Quiz.incorrectAnswer)
                 .textStyle(DesignSystem.Typography.bodyMedium, color: isCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error)
         }
-        .padding(.horizontal, DesignSystem.Spacing.md)
-        .padding(.vertical, DesignSystem.Spacing.sm)
-        .background(
-            RoundedRectangle(cornerRadius: DesignSystem.CornerRadius.md)
-                .fill((isCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error).opacity(0.1))
-        )
+        .padding(.horizontal, DesignSystem.Spacing.sm)
+        .padding(.vertical, DesignSystem.Spacing.xs)
     }
 }
