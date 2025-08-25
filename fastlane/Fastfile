@@ -87,12 +87,28 @@ platform :ios do
     scan(
       workspace: "dynamox.xcworkspace",
       scheme: "dynamox",
-      destination: "platform=iOS Simulator,OS=latest",
+      destination: "generic/platform=iOS Simulator",
       clean: true,
       skip_build: false,
       result_bundle: true,
       output_directory: "test_output",
       only_testing: ["dynamoxTests"]
+    )
+  end
+
+  desc "GitHub Actions - unit tests only (most compatible)"
+  lane :github_actions do
+    scan(
+      workspace: "dynamox.xcworkspace",
+      scheme: "dynamox",
+      destination: "generic/platform=iOS Simulator",
+      clean: true,
+      skip_build: false,
+      result_bundle: true,
+      output_directory: "test_output",
+      only_testing: ["dynamoxTests"],
+      skip_package_dependencies_resolution: false,
+      disable_package_automatic_updates: true
     )
   end
 

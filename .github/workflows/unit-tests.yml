@@ -35,7 +35,7 @@ jobs:
         
     - name: Run Unit Tests
       run: |
-        bundle exec fastlane ci_unit_tests_only
+        bundle exec fastlane github_actions
         
     - name: Upload test results
       uses: actions/upload-artifact@v4
