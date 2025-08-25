@@ -13,25 +13,30 @@ class ResultsViewModel: BaseViewModel {
     @Published var totalQuizzes: Int = 0
     @Published var averageScore: Int = 0
     
+    private let quizStorageService: QuizStorageServiceProtocol
+    
     var hasResult: Bool {
         !recentResults.isEmpty
     }
     
-    override init() {
+    init(quizStorageService: QuizStorageServiceProtocol) {
+        self.quizStorageService = quizStorageService
         super.init()
         loadResults()
     }
     
     func loadResults() {
-        // TODO: load from persistant storage
-        loadMockResults()
+        recentResults = quizStorageService.loadQuizResults()
+        updateStatistics()
     }
     
     func saveResult(_ result: QuizResult) {
         recentResults.insert(result, at: 0)
         updateStatistics()
-        
-        // TODO: SAve to persistant storage
+    }
+    
+    func refreshResults() {
+        loadResults()
     }
     
     private func updateStatistics() {
@@ -45,28 +50,4 @@ class ResultsViewModel: BaseViewModel {
         }
     }
     
-    private func loadMockResults() {
-        // Mock data for development
-        let mockResults = [
-            QuizResult(
-                id: UUID(),
-                userName: "sergio",
-                score: 85,
-                correctAnswers: 8,
-                totalQuestions: 10,
-                date: Date().addingTimeInterval(-3600)
-            ),
-            QuizResult(
-                id: UUID(),
-                userName: "jara",
-                score: 92,
-                correctAnswers: 9,
-                totalQuestions: 10,
-                date: Date().addingTimeInterval(-7200)
-            )
-        ]
-        
-        recentResults = mockResults
-        updateStatistics()
-    }
 }

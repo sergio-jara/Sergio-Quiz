@@ -82,7 +82,10 @@ struct ResultsTabView: View {
                 
             }
             .navigationTitle(DesignSystem.Text.Results.tabTitle)
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                viewModel.refreshResults()
+            }
         }
     }
 }

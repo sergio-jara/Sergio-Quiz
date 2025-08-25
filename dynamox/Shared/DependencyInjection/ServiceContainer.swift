@@ -39,7 +39,7 @@ class ServiceContainer {
     }
     
     @MainActor func makeResultsViewModel() -> ResultsViewModel {
-        ResultsViewModel()
+        ResultsViewModel(quizStorageService: quizStorageService)
     }
     
     // MARK: - Coordinators
