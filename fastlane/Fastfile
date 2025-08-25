@@ -101,7 +101,7 @@ platform :ios do
     scan(
       workspace: "dynamox.xcworkspace",
       scheme: "dynamox",
-      destination: "generic/platform=iOS Simulator,OS=latest",
+      destination: "platform=iOS Simulator,name=iPhone 16,OS=latest",
       clean: true,
       skip_build: false,
       result_bundle: true,
