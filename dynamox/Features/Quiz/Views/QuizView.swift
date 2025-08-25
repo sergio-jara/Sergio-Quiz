@@ -35,20 +35,35 @@ struct QuizView: View {
     
     // MARK: - Quiz Content
     private var quizContent: some View {
-        VStack(spacing: DesignSystem.Spacing.md) {
-            // Progress Header
+        VStack(spacing: 0) {
+            // Fixed Progress Header at top
             progressHeader
             
-            if viewModel.isLoading {
-                ProgressView(DesignSystem.Text.Quiz.loadingQuestion)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            } else if let question = viewModel.currentQuestion {
-                questionContent(question)
-            } else {
-                noQuestionContent
+            // Scrollable content area
+            ScrollView {
+                VStack(spacing: DesignSystem.Spacing.md) {
+                    if viewModel.isLoading {
+                        ProgressView(DesignSystem.Text.Quiz.loadingQuestion)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    } else if let question = viewModel.currentQuestion {
+                        questionContent(question)
+                    } else {
+                        noQuestionContent
+                    }
+                }
+                .standardPadding()
+                .padding(.bottom, 120) // Add bottom padding to account for fixed button area
             }
         }
-        .standardPadding()
+        .overlay(
+            // Fixed bottom button area
+            VStack {
+                Spacer()
+                bottomButtonArea
+            }
+            .padding(.horizontal, DesignSystem.Spacing.md)
+            .padding(.bottom, DesignSystem.Spacing.md)
+        )
         .quizBackground()
     }
     
@@ -124,53 +139,49 @@ struct QuizView: View {
                 }
             }
             
-            // Submit button or Result area (compact height to save space)
-            ZStack {
-                // Background placeholder to maintain consistent spacing
-                Rectangle()
-                    .fill(Color.clear)
-                    .frame(height: 100)
-                
-                // Submit button - fixed at bottom
-                if !viewModel.isAnswerSubmitted {
-                    VStack {
-                        Spacer()
-                        Button(action: {
-                            Task {
-                                await viewModel.submitAnswer()
-                            }
-                        }) {
-                            Text(DesignSystem.Text.Quiz.submitAnswer)
-                                .textStyle(DesignSystem.Typography.button, color: .white)
-                                .frame(maxWidth: .infinity)
-                                .standardPadding()
-                                .background(viewModel.selectedAnswer.isEmpty ? DesignSystem.Colors.secondary : DesignSystem.Colors.primary)
-                                .standardCornerRadius()
-                        }
-                        .disabled(viewModel.selectedAnswer.isEmpty)
-                        .frame(maxWidth: .infinity)
+            // Question content only - no button area here anymore
+        }
+    }
+    
+    // MARK: - Bottom Button Area
+    private var bottomButtonArea: some View {
+        Group {
+            if !viewModel.isAnswerSubmitted {
+                // Submit button
+                Button(action: {
+                    Task {
+                        await viewModel.submitAnswer()
                     }
-                } else {
-                    // Result and next question - compact positioning
-                    VStack(spacing: DesignSystem.Spacing.sm) {
-                        Spacer()
-                        ResultView(isCorrect: viewModel.isAnswerCorrect)
-                        
-                        Button(action: {
-                            viewModel.nextQuestion()
-                        }) {
-                            Text(viewModel.currentQuestionNumber + 1 >= viewModel.totalQuestions ? DesignSystem.Text.Quiz.finishQuiz : DesignSystem.Text.Quiz.nextQuestion)
-                                .textStyle(DesignSystem.Typography.button, color: .white)
-                                .frame(maxWidth: .infinity)
-                                .standardPadding()
-                                .background(DesignSystem.Colors.success)
-                                .standardCornerRadius()
-                        }
+                }) {
+                    Text(DesignSystem.Text.Quiz.submitAnswer)
+                        .textStyle(DesignSystem.Typography.button, color: .white)
+                        .frame(maxWidth: .infinity)
+                        .standardPadding()
+                        .background(viewModel.selectedAnswer.isEmpty ? DesignSystem.Colors.secondary : DesignSystem.Colors.primary)
+                        .standardCornerRadius()
+                }
+                .disabled(viewModel.selectedAnswer.isEmpty)
+                .frame(maxWidth: .infinity)
+            } else {
+                // Result and next question
+                VStack(spacing: DesignSystem.Spacing.sm) {
+                    ResultView(isCorrect: viewModel.isAnswerCorrect)
+                    
+                    Button(action: {
+                        viewModel.nextQuestion()
+                    }) {
+                        Text(viewModel.currentQuestionNumber + 1 >= viewModel.totalQuestions ? DesignSystem.Text.Quiz.finishQuiz : DesignSystem.Text.Quiz.nextQuestion)
+                            .textStyle(DesignSystem.Typography.button, color: .white)
+                            .frame(maxWidth: .infinity)
+                            .standardPadding()
+                            .background(DesignSystem.Colors.success)
+                            .standardCornerRadius()
                     }
                 }
             }
-            .frame(height: 100) // Reduced height to save vertical space
         }
+        .background(DesignSystem.Colors.surface)
+        .standardCornerRadius()
     }
     
     // MARK: - No Question Content
