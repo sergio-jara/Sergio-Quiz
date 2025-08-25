@@ -17,7 +17,9 @@ struct QuizView: View {
         NavigationView {
             Group {
                 if viewModel.isQuizCompleted {
-                    Text("completed")
+                    ScoreView(viewModel: viewModel, onBackToWelcome: {
+                        showingQuiz = false
+                    })
                 } else {
                     quizContent
                 }

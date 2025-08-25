@@ -120,6 +120,10 @@ struct DesignSystem {
         static let info = "info.circle"
         static let warning = "exclamationmark.triangle"
         static let error = "exclamationmark.circle"
+        
+        // Action Icons
+        static let restart = "arrow.clockwise"
+        static let home = "house.fill"
 
         
     }
