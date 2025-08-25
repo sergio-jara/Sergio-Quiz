@@ -61,7 +61,7 @@ struct DesignSystem {
         static let border = Color(.separator)
         
         // Quiz-specific Colors
-        static let quizBackground = Color(.systemGroupedBackground)
+        static let quizBackground = Color(.systemBackground)
         static let correctAnswer = Color.green
         static let incorrectAnswer = Color.red
         static let trophy = Color.yellow
