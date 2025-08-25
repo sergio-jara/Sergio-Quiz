@@ -295,19 +295,19 @@ final class QuizViewModelTests: XCTestCase {
         
         // Test score message for different ranges
         viewModel.correctAnswers = 9 // 90%
-        XCTAssertEqual(viewModel.scoreMessage, DesignSystem.Text.Results.excellentScore)
+        XCTAssertEqual(viewModel.scoreMessage, "Excelente! Você é um mestre do quiz!")
         
         viewModel.correctAnswers = 8 // 80%
-        XCTAssertEqual(viewModel.scoreMessage, DesignSystem.Text.Results.greatScore)
+        XCTAssertEqual(viewModel.scoreMessage, "Ótimo trabalho! Você sabe das coisas!")
         
         viewModel.correctAnswers = 6 // 60%
-        XCTAssertEqual(viewModel.scoreMessage, DesignSystem.Text.Results.goodScore)
+        XCTAssertEqual(viewModel.scoreMessage, "Bom esforço! Continue aprendendo!")
         
         viewModel.correctAnswers = 4 // 40%
-        XCTAssertEqual(viewModel.scoreMessage, DesignSystem.Text.Results.fairScore)
+        XCTAssertEqual(viewModel.scoreMessage, "Nada mal! Há espaço para melhorar!")
         
         viewModel.correctAnswers = 2 // 20%
-        XCTAssertEqual(viewModel.scoreMessage, DesignSystem.Text.Results.poorScore)
+        XCTAssertEqual(viewModel.scoreMessage, "Continue praticando! Você vai melhorar!")
     }
     
     func testQuizViewModelInheritanceFromBaseViewModel() throws {
