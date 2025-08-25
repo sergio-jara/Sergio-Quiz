@@ -13,16 +13,19 @@ final class QuizViewModelTests: XCTestCase {
     
     // MARK: - Properties
     private var mockAPIClient: MockQuizAPIClient!
+    private var mockQuizStorageService: MockQuizStorageService!
     private var viewModel: QuizViewModel!
     
     // MARK: - Setup and Teardown
     override func setUpWithError() throws {
         mockAPIClient = MockQuizAPIClient()
-        viewModel = QuizViewModel(apiClient: mockAPIClient)
+        mockQuizStorageService = MockQuizStorageService()
+        viewModel = QuizViewModel(apiClient: mockAPIClient, quizStorageService: mockQuizStorageService)
     }
     
     override func tearDownWithError() throws {
         mockAPIClient = nil
+        mockQuizStorageService = nil
         viewModel = nil
     }
     
@@ -331,6 +334,42 @@ final class QuizViewModelTests: XCTestCase {
         
         XCTAssertNil(viewModel.errorMessage)
         XCTAssertFalse(viewModel.showError)
+    }
+}
+
+// MARK: - Mock Quiz Storage Service
+@MainActor
+private class MockQuizStorageService: QuizStorageServiceProtocol {
+    var mockResults: [QuizResult] = []
+    var shouldThrowError = false
+    var mockError: Error?
+    
+    func saveQuizResult(_ result: QuizResult) {
+        if shouldThrowError {
+            // In a real scenario, this might throw an error
+            // For now, we'll just simulate success
+        }
+        // The mock doesn't actually persist data, just stores it for testing
+        mockResults.append(result)
+    }
+    
+    func loadQuizResults() -> [QuizResult] {
+        if shouldThrowError {
+            // In a real scenario, this might throw an error
+            // For now, we'll just return empty array
+            return []
+        }
+        return mockResults
+    }
+    
+    func getTotalQuizzes() -> Int {
+        return mockResults.count
+    }
+    
+    func getAverageScore() -> Int {
+        guard !mockResults.isEmpty else { return 0 }
+        let totalScore = mockResults.reduce(0) { $0 + $1.score }
+        return totalScore / mockResults.count
     }
 }
 
