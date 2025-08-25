@@ -34,38 +34,89 @@ jobs:
       run: |
         pod install --repo-update
         
+    - name: Check project structure
+      run: |
+        echo "Checking project structure..."
+        ls -la
+        if [ -f "dynamox.xcworkspace" ]; then
+          echo "Found .xcworkspace - using workspace build"
+          echo "WORKSPACE_BUILD=true" >> $GITHUB_ENV
+        else
+          echo "No .xcworkspace found - using project build"
+          echo "WORKSPACE_BUILD=false" >> $GITHUB_ENV
+        fi
+        
     - name: Build project
       run: |
-        xcodebuild clean build \
-          -workspace dynamox.xcworkspace \
-          -scheme dynamox \
-          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
-          -derivedDataPath build \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO
+        if [ "$WORKSPACE_BUILD" = "true" ]; then
+          echo "Building with workspace..."
+          xcodebuild clean build \
+            -workspace dynamox.xcworkspace \
+            -scheme dynamox \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+        else
+          echo "Building with project..."
+          xcodebuild clean build \
+            -project dynamox.xcodeproj \
+            -scheme dynamox \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+        fi
           
     - name: Run unit tests
       run: |
-        xcodebuild test \
-          -workspace dynamox.xcworkspace \
-          -scheme dynamox \
-          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
-          -derivedDataPath build \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO
+        if [ "$WORKSPACE_BUILD" = "true" ]; then
+          echo "Testing with workspace..."
+          xcodebuild test \
+            -workspace dynamox.xcworkspace \
+            -scheme dynamox \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+        else
+          echo "Testing with project..."
+          xcodebuild test \
+            -project dynamox.xcodeproj \
+            -scheme dynamox \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+        fi
           
     - name: Run UI tests
       run: |
-        xcodebuild test \
-          -workspace dynamox.xcworkspace \
-          -scheme dynamoxUITests \
-          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
-          -derivedDataPath build \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO
+        if [ "$WORKSPACE_BUILD" = "true" ]; then
+          echo "UI Testing with workspace..."
+          xcodebuild test \
+            -workspace dynamox.xcworkspace \
+            -scheme dynamoxUITests \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+        else
+          echo "UI Testing with project..."
+          xcodebuild test \
+            -project dynamox.xcodeproj \
+            -scheme dynamoxUITests \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+        fi
           
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
