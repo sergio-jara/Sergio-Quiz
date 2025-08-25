@@ -118,3 +118,4 @@ logs/
 # Backup files
 *.bak
 *.backup
+test_output

@@ -1,0 +1,75 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build the app"
+  lane :build do
+    cocoapods
+    build_ios_app(
+      workspace: "dynamox.xcworkspace",
+      scheme: "dynamox",
+      configuration: "Debug",
+      clean: true,
+      output_directory: "build",
+      skip_codesigning: true,
+      skip_package_ipa: true
+    )
+  end
+
+  desc "Run unit tests only"
+  lane :unit_test do
+    cocoapods
+    scan(
+      workspace: "dynamox.xcworkspace",
+      scheme: "dynamox",
+      destination: "platform=iOS Simulator,OS=latest",
+      clean: true,
+      skip_build: false,
+      result_bundle: true,
+      output_directory: "test_output"
+    )
+  end
+
+  desc "Run UI tests only"
+  lane :ui_test do
+    cocoapods
+    scan(
+      workspace: "dynamox.xcworkspace",
+      scheme: "dynamoxUITests",
+      destination: "platform=iOS Simulator,OS=latest",
+      clean: true,
+      skip_build: false,
+      result_bundle: true,
+      output_directory: "test_output"
+    )
+  end
+
+  desc "CI pipeline - build and unit tests only"
+  lane :ci do
+    cocoapods
+    build_ios_app(
+      workspace: "dynamox.xcworkspace",
+      scheme: "dynamox",
+      configuration: "Debug",
+      clean: true,
+      output_directory: "build",
+      skip_codesigning: true,
+      skip_package_ipa: true
+    )
+    
+    scan(
+      workspace: "dynamox.xcworkspace",
+      scheme: "dynamox",
+      destination: "platform=iOS Simulator,OS=latest",
+      clean: false,
+      skip_build: true,
+      result_bundle: true,
+      output_directory: "test_output"
+    )
+  end
+
+  desc "Clean build artifacts"
+  lane :clean do
+    clean_build_artifacts
+    sh "rm -rf build test_output"
+  end
+end
