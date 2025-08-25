@@ -24,6 +24,15 @@ struct MainTabView: View {
                     Image(systemName: DesignSystem.Icons.brainProfile)
                     Text(DesignSystem.Text.Quiz.tabTitle)
                 }
+            
+            // Results Tab
+            ResultsTabView(
+                viewModel: ServiceContainer.shared.makeResultsViewModel()
+            )
+            .tabItem {
+                Image(systemName: DesignSystem.Icons.results)
+                Text(DesignSystem.Text.Results.tabTitle)
+            }
         }
         .sheet(isPresented: $showingWelcome) {
             WelcomeView(

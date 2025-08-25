@@ -30,6 +30,10 @@ class ServiceContainer {
         WelcomeViewModel()
     }
     
+    @MainActor func makeResultsViewModel() -> ResultsViewModel {
+        ResultsViewModel()
+    }
+    
     // MARK: - Coordinators
     func makeQuizCoordinator() -> QuizCoordinator {
         QuizCoordinator()
