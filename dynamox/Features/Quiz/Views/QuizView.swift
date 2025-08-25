@@ -121,38 +121,52 @@ struct QuizView: View {
                 }
             }
             
-            // Submit button
-            if !viewModel.isAnswerSubmitted {
-                Button(action: {
-                    Task {
-                        await viewModel.submitAnswer()
-                    }
-                }) {
-                    Text(DesignSystem.Text.Quiz.submitAnswer)
-                        .textStyle(DesignSystem.Typography.button, color: .white)
+            // Submit button or Result area (fixed height to prevent layout shifts)
+            ZStack {
+                // Background placeholder to maintain consistent spacing
+                Rectangle()
+                    .fill(Color.clear)
+                    .frame(height: 140)
+                
+                // Submit button - fixed at bottom
+                if !viewModel.isAnswerSubmitted {
+                    VStack {
+                        Spacer()
+                        Button(action: {
+                            Task {
+                                await viewModel.submitAnswer()
+                            }
+                        }) {
+                            Text(DesignSystem.Text.Quiz.submitAnswer)
+                                .textStyle(DesignSystem.Typography.button, color: .white)
+                                .frame(maxWidth: .infinity)
+                                .standardPadding()
+                                .background(viewModel.selectedAnswer.isEmpty ? DesignSystem.Colors.secondary : DesignSystem.Colors.primary)
+                                .standardCornerRadius()
+                        }
+                        .disabled(viewModel.selectedAnswer.isEmpty)
                         .frame(maxWidth: .infinity)
-                        .standardPadding()
-                        .background(viewModel.selectedAnswer.isEmpty ? DesignSystem.Colors.secondary : DesignSystem.Colors.primary)
-                        .standardCornerRadius()
-                }
-                .disabled(viewModel.selectedAnswer.isEmpty)
-            } else {
-                // Result and next question
-                VStack(spacing: DesignSystem.Spacing.md) {
-                    ResultView(isCorrect: viewModel.isAnswerCorrect)
-                    
-                    Button(action: {
-                        viewModel.nextQuestion()
-                    }) {
-                        Text(viewModel.currentQuestionNumber + 1 >= viewModel.totalQuestions ? DesignSystem.Text.Quiz.finishQuiz : DesignSystem.Text.Quiz.nextQuestion)
-                            .textStyle(DesignSystem.Typography.button, color: .white)
-                            .frame(maxWidth: .infinity)
-                            .standardPadding()
-                            .background(DesignSystem.Colors.success)
-                            .standardCornerRadius()
+                    }
+                } else {
+                    // Result and next question - fixed positioning
+                    VStack(spacing: DesignSystem.Spacing.md) {
+                        Spacer()
+                        ResultView(isCorrect: viewModel.isAnswerCorrect)
+                        
+                        Button(action: {
+                            viewModel.nextQuestion()
+                        }) {
+                            Text(viewModel.currentQuestionNumber + 1 >= viewModel.totalQuestions ? DesignSystem.Text.Quiz.finishQuiz : DesignSystem.Text.Quiz.nextQuestion)
+                                .textStyle(DesignSystem.Typography.button, color: .white)
+                                .frame(maxWidth: .infinity)
+                                .standardPadding()
+                                .background(DesignSystem.Colors.success)
+                                .standardCornerRadius()
+                        }
                     }
                 }
             }
+            .frame(height: 140) // Fixed height to prevent layout shifts
         }
     }
     
