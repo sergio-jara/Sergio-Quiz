@@ -38,7 +38,7 @@ jobs:
       run: |
         echo "Checking project structure..."
         ls -la
-        if [ -f "dynamox.xcworkspace" ]; then
+        if [ -d "dynamox.xcworkspace" ] || [ -f "dynamox.xcworkspace" ]; then
           echo "Found .xcworkspace - using workspace build"
           echo "WORKSPACE_BUILD=true" >> $GITHUB_ENV
         else
