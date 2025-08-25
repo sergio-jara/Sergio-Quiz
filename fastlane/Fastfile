@@ -20,7 +20,7 @@ platform :ios do
     scan(
       workspace: "dynamox.xcworkspace",
       scheme: "dynamox",
-      destination: "platform=iOS Simulator,id=BD104AFC-1D8A-43E6-BEA2-DF9CD117DD73",
+      destination: "platform=iOS Simulator,OS=latest",
       clean: true,
       skip_build: false,
       result_bundle: true,
