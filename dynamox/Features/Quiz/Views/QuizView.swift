@@ -4,22 +4,18 @@ struct QuizView: View {
     @ObservedObject var viewModel: QuizViewModel
     @ObservedObject var coordinator: QuizCoordinator
     let userName: String
-    @Binding var showingQuiz: Bool
     
     init(viewModel: QuizViewModel, coordinator: QuizCoordinator, userName: String, showingQuiz: Binding<Bool>) {
         self.viewModel = viewModel
         self.coordinator = coordinator
         self.userName = userName
-        self._showingQuiz = showingQuiz
     }
     
     var body: some View {
         NavigationView {
             Group {
                 if viewModel.isQuizCompleted {
-                    ScoreView(viewModel: viewModel, onBackToWelcome: {
-                        showingQuiz = false
-                    })
+                    ScoreView(viewModel: viewModel)
                 } else {
                     quizContent
                 }

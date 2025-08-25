@@ -10,7 +10,6 @@ import SwiftUI
 struct ScoreView: View {
     
     @ObservedObject var viewModel: QuizViewModel
-    let onBackToWelcome: () -> Void
     
     var body: some View {
         VStack(spacing: DesignSystem.Spacing.lg) {
@@ -101,18 +100,6 @@ struct ScoreView: View {
                     .frame(maxWidth: .infinity)
                     .standardPadding()
                     .background(DesignSystem.Colors.primary)
-                    .standardCornerRadius()
-                }
-                
-                Button(action: onBackToWelcome) {
-                    HStack {
-                        Image(systemName: DesignSystem.Icons.home)
-                        Text(DesignSystem.Text.Results.backToWelcome)
-                    }
-                    .textStyle(DesignSystem.Typography.button, color: DesignSystem.Colors.primary)
-                    .frame(maxWidth: .infinity)
-                    .standardPadding()
-                    .background(DesignSystem.Colors.primary.opacity(0.1))
                     .standardCornerRadius()
                 }
             }
