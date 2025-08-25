@@ -34,6 +34,7 @@ struct MainTabView: View {
                 Text(DesignSystem.Text.Results.tabTitle)
             }
         }
+        .tabBarBackground()
         .sheet(isPresented: $showingWelcome) {
             WelcomeView(
                 viewModel: ServiceContainer.shared.makeWelcomeViewModel(),

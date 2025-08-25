@@ -55,6 +55,7 @@ struct DesignSystem {
         // Neutral Colors
         static let background = Color(.systemBackground)
         static let surface = Color(.secondarySystemBackground)
+        static let tabBarBackground = Color(.secondarySystemBackground)
         static let text = Color(.label)
         static let textSecondary = Color(.secondaryLabel)
         static let textTertiary = Color(.tertiaryLabel)
@@ -279,6 +280,20 @@ extension View {
     
     func quizBackground() -> some View {
         self.background(DesignSystem.Colors.quizBackground)
+    }
+    
+    func tabBarBackground() -> some View {
+        self.toolbarBackground(DesignSystem.Colors.tabBarBackground, for: .tabBar)
+            .toolbarBackground(.visible, for: .tabBar)
+            .onAppear {
+                // Ensure tab bar background is always visible
+                let appearance = UITabBarAppearance()
+                appearance.configureWithOpaqueBackground()
+                appearance.backgroundColor = UIColor(DesignSystem.Colors.tabBarBackground)
+                
+                UITabBar.appearance().standardAppearance = appearance
+                UITabBar.appearance().scrollEdgeAppearance = appearance
+            }
     }
     
     // MARK: - Corner Radius Modifiers
