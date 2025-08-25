@@ -54,8 +54,7 @@ class ResultsViewModel: BaseViewModel {
                 score: 85,
                 correctAnswers: 8,
                 totalQuestions: 10,
-                date: Date().addingTimeInterval(-3600),
-                questions: []
+                date: Date().addingTimeInterval(-3600)
             ),
             QuizResult(
                 id: UUID(),
@@ -63,8 +62,7 @@ class ResultsViewModel: BaseViewModel {
                 score: 92,
                 correctAnswers: 9,
                 totalQuestions: 10,
-                date: Date().addingTimeInterval(-7200),
-                questions: []
+                date: Date().addingTimeInterval(-7200)
             )
         ]
         

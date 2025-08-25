@@ -14,15 +14,13 @@ struct QuizResult: Identifiable, Codable {
     let correctAnswers: Int
     let totalQuestions: Int
     let date: Date
-    let questions: [QuizQuestion]
     
-    init(id: UUID = UUID(), userName: String, score: Int, correctAnswers: Int, totalQuestions: Int, date: Date = Date(), questions: [QuizQuestion]) {
+    init(id: UUID = UUID(), userName: String, score: Int, correctAnswers: Int, totalQuestions: Int, date: Date = Date()) {
         self.id = id
         self.userName = userName
         self.score = score
         self.correctAnswers = correctAnswers
         self.totalQuestions = totalQuestions
         self.date = date
-        self.questions = questions
     }
 }

@@ -15,7 +15,6 @@ class RealmQuizResult: Object {
     @Persisted var correctAnswers: Int
     @Persisted var totalQuestions: Int
     @Persisted var date: Date
-    @Persisted var questions: List<RealmQuizQuestion>
     
     convenience init(from quizResult: QuizResult) {
         self.init()
@@ -25,8 +24,7 @@ class RealmQuizResult: Object {
         self.correctAnswers = quizResult.correctAnswers
         self.totalQuestions = quizResult.totalQuestions
         self.date = quizResult.date
-        self.questions = List<RealmQuizQuestion>()
-        self.questions.append(objectsIn: quizResult.questions.map { RealmQuizQuestion(from: $0) })
+        
     }
     
     func toQuizResult() -> QuizResult {
@@ -36,8 +34,6 @@ class RealmQuizResult: Object {
             score: score,
             correctAnswers: correctAnswers,
             totalQuestions: totalQuestions,
-            date: date,
-            questions: questions.map { $0.toQuizQuestion() }
-        )
+            date: date)
     }
 }

@@ -20,10 +20,18 @@ class ServiceContainer {
     lazy var quizAPIClient: QuizAPIClientProtocol = {
         QuizAPIClient(networkService: networkService)
     }()
+    
+    lazy var realmService: RealmServiceProtocol = {
+        RealmService()
+    }()
+    
+    lazy var quizStorageService: QuizStorageServiceProtocol = {
+        QuizStorageService(realmService: realmService)
+    }()
 
     // MARK: - View Models
     @MainActor func makeQuizViewModel() -> QuizViewModel {
-        QuizViewModel(apiClient: quizAPIClient)
+        QuizViewModel(apiClient: quizAPIClient, quizStorageService: quizStorageService)
     }
     
     @MainActor func makeWelcomeViewModel() -> WelcomeViewModel {

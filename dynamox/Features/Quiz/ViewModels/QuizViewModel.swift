@@ -13,10 +13,15 @@ class QuizViewModel: BaseViewModel {
     @Published var userName: String = ""
     
     private let apiClient: QuizAPIClientProtocol
+    private let quizStorageService: QuizStorageServiceProtocol
     let totalQuestions = 10
     
-    init(apiClient: QuizAPIClientProtocol) {
+    init(
+        apiClient: QuizAPIClientProtocol,
+        quizStorageService: QuizStorageServiceProtocol
+    ) {
         self.apiClient = apiClient
+        self.quizStorageService = quizStorageService
         super.init()
     }
     
@@ -82,6 +87,7 @@ class QuizViewModel: BaseViewModel {
         
         if currentQuestionNumber >= totalQuestions {
             isQuizCompleted = true
+            saveQuizResult()
         } else {
             Task {
                 await loadRandomQuestion()
@@ -130,5 +136,17 @@ class QuizViewModel: BaseViewModel {
         selectedAnswer = ""
         isAnswerSubmitted = false
         isAnswerCorrect = false
+    }
+    
+    private func saveQuizResult() {
+        let result = QuizResult(
+            userName: userName,
+            score: Int(percentageScore),
+            correctAnswers: correctAnswers,
+            totalQuestions: totalQuestions,
+            date: Date()
+        )
+        
+        quizStorageService.saveQuizResult(result)
     }
 }
