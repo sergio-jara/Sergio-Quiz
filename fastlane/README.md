@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Build the app
 
+### ios unit_test_only
+
+```sh
+[bundle exec] fastlane ios unit_test_only
+```
+
+Run unit tests only (without cocoapods)
+
 ### ios unit_test
 
 ```sh

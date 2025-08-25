@@ -15,13 +15,27 @@ platform :ios do
     )
   end
 
+  desc "Run unit tests only (without cocoapods)"
+  lane :unit_test_only do
+    scan(
+      workspace: "dynamox.xcworkspace",
+      scheme: "dynamox",
+      destination: "platform=iOS Simulator,id=BD104AFC-1D8A-43E6-BEA2-DF9CD117DD73",
+      clean: true,
+      skip_build: false,
+      result_bundle: true,
+      output_directory: "test_output",
+      only_testing: ["dynamoxTests"]
+    )
+  end
+
   desc "Run unit tests only"
   lane :unit_test do
     cocoapods
     scan(
       workspace: "dynamox.xcworkspace",
       scheme: "dynamox",
-      destination: "platform=iOS Simulator,OS=latest",
+      destination: "platform=iOS Simulator,id=BD104AFC-1D8A-43E6-BEA2-DF9CD117DD73",
       clean: true,
       skip_build: false,
       result_bundle: true,
@@ -63,7 +77,22 @@ platform :ios do
       clean: false,
       skip_build: true,
       result_bundle: true,
-      output_directory: "test_output"
+      output_directory: "test_output",
+      only_testing: ["dynamoxTests"]
+    )
+  end
+
+  desc "CI pipeline - unit tests only (no build, no UI tests)"
+  lane :ci_unit_tests_only do
+    scan(
+      workspace: "dynamox.xcworkspace",
+      scheme: "dynamox",
+      destination: "platform=iOS Simulator,OS=latest",
+      clean: true,
+      skip_build: false,
+      result_bundle: true,
+      output_directory: "test_output",
+      only_testing: ["dynamoxTests"]
     )
   end
 
