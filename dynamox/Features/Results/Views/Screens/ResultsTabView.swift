@@ -22,18 +22,18 @@ struct ResultsTabView: View {
                         VStack(spacing: DesignSystem.Spacing.lg) {
                             // Overall Stats
                             VStack(spacing: DesignSystem.Spacing.md) {
-                                Text(DesignSystem.Text.Results.performanceTitle)
+                                Text(AppStrings.Results.performanceTitle)
                                     .heading2()
                                     .multilineTextAlignment(.center)
                                 
                                 HStack(spacing: DesignSystem.Spacing.xl) {
                                     StatCard(
-                                        title: DesignSystem.Text.Results.totalQuizzes,
+                                        title: AppStrings.Results.totalQuizzes,
                                         value: "\(viewModel.totalQuizzes)",
                                         icon: DesignSystem.Icons.totalQuizzes
                                     )
                                     StatCard(
-                                        title: DesignSystem.Text.Results.averageScore,
+                                        title: AppStrings.Results.averageScore,
                                         value: "\(viewModel.averageScore)%",
                                         icon: DesignSystem.Icons.averageScore
                                     )
@@ -47,7 +47,7 @@ struct ResultsTabView: View {
                             VStack(
                                 alignment: .leading, spacing: DesignSystem.Spacing.md) {
                                     Text(
-                                        DesignSystem.Text.Results.recentResults
+                                        AppStrings.Results.recentResults
                                     ).heading3()
                                     
                                     ForEach(viewModel.recentResults) { result in
@@ -69,11 +69,11 @@ struct ResultsTabView: View {
                             .font(.system(size: 80))
                             .foregroundColor(DesignSystem.Colors.textSecondary)
                         
-                        Text(DesignSystem.Text.Results.noResultsYet)
+                        Text(AppStrings.Results.noResultsYet)
                             .heading2()
                             .multilineTextAlignment(.center)
                         
-                        Text(DesignSystem.Text.Results.completeQuizForResults)
+                        Text(AppStrings.Results.completeQuizForResults)
                             .textStyle(DesignSystem.Typography.bodyMedium, color: DesignSystem.Colors.textSecondary)
                             .multilineTextAlignment(.center)
                     }
@@ -81,7 +81,7 @@ struct ResultsTabView: View {
                 }
                 
             }
-            .navigationTitle(DesignSystem.Text.Results.tabTitle)
+            .navigationTitle(AppStrings.Results.tabTitle)
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 viewModel.refreshResults()

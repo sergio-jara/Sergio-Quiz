@@ -19,7 +19,7 @@ struct QuizTabView: View {
             VStack(spacing: DesignSystem.Spacing.xl) {
                 mainContent
             }
-            .navigationTitle(DesignSystem.Text.Quiz.tabTitle)
+            .navigationTitle(AppStrings.Quiz.tabTitle)
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 if !userName.isEmpty && viewModel.currentQuestion == nil && !viewModel.isLoading {
@@ -66,7 +66,7 @@ struct QuizTabView: View {
                 .scaleEffect(1.5)
                 .progressViewStyle(CircularProgressViewStyle(tint: DesignSystem.Colors.primary))
             
-            Text(DesignSystem.Text.Quiz.loadingQuestion)
+                            Text(AppStrings.Quiz.loadingQuestion)
                 .textStyle(DesignSystem.Typography.bodyMedium, color: DesignSystem.Colors.textSecondary)
         }
         .standardPadding()
@@ -99,15 +99,15 @@ struct QuizTabView: View {
             brainIcon
                 .foregroundColor(DesignSystem.Colors.primary)
             
-            Text(DesignSystem.Text.Quiz.readyToStart)
+                            Text(AppStrings.Quiz.readyToStart)
                 .heading2()
                 .multilineTextAlignment(.center)
             
-            Text(DesignSystem.Text.Quiz.tapWelcomeToBegin)
+                            Text(AppStrings.Quiz.tapWelcomeToBegin)
                 .textStyle(DesignSystem.Typography.bodyMedium, color: DesignSystem.Colors.textSecondary)
                 .multilineTextAlignment(.center)
             
-            Button(DesignSystem.Text.Welcome.startButton) {
+                            Button(AppStrings.Welcome.startButton) {
                 showingWelcome = true
             }
             .buttonStyle(.borderedProminent)

@@ -19,13 +19,13 @@ struct ScoreView: View {
                     .font(.system(size: 60))
                     .foregroundColor(DesignSystem.Colors.trophy)
                 
-                Text(DesignSystem.Text.Results.quizComplete)
+                Text(AppStrings.Results.quizComplete)
                     .heading2()
                 
                 if !viewModel.userName.isEmpty {
                     Text(
                         String(
-                            format: DesignSystem.Text.Results.congratulationsFormat,
+                            format: AppStrings.Results.congratulationsFormat,
                             viewModel.userName))
                     .textStyle(
                         DesignSystem.Typography.bodyMedium,
@@ -49,7 +49,7 @@ struct ScoreView: View {
                         Text(viewModel.scoreText)
                             .font(.system(size: 36, weight: .bold, design: .rounded))
                             .foregroundColor(DesignSystem.Colors.primary)
-                        Text(DesignSystem.Text.Results.score)
+                        Text(AppStrings.Results.score)
                             .textStyle(DesignSystem.Typography.h4, color: DesignSystem.Colors.textSecondary)
                     }
                     
@@ -57,7 +57,7 @@ struct ScoreView: View {
                         Text("\(Int(viewModel.percentageScore))%")
                             .font(.system(size: 36, weight: .bold, design: .rounded))
                             .foregroundColor(DesignSystem.Colors.success)
-                        Text(DesignSystem.Text.Results.percentage)
+                        Text(AppStrings.Results.percentage)
                             .textStyle(DesignSystem.Typography.h4, color: DesignSystem.Colors.textSecondary)
                     }
                 }
@@ -65,7 +65,7 @@ struct ScoreView: View {
             
             // Performance Bar
             VStack(spacing: DesignSystem.Spacing.xs) {
-                Text(DesignSystem.Text.Results.performance)
+                Text(AppStrings.Results.performance)
                     .textStyle(DesignSystem.Typography.h4, color: DesignSystem.Colors.textSecondary)
                 
                 ProgressView(value: viewModel.percentageScore, total: 100)
@@ -94,7 +94,7 @@ struct ScoreView: View {
                 }) {
                     HStack {
                         Image(systemName: DesignSystem.Icons.restart)
-                        Text(DesignSystem.Text.Results.restartQuiz)
+                        Text(AppStrings.Results.restartQuiz)
                     }
                     .textStyle(DesignSystem.Typography.button, color: .white)
                     .frame(maxWidth: .infinity)
@@ -106,7 +106,7 @@ struct ScoreView: View {
         }
         .standardPadding()
         .standardBackground()
-        .navigationTitle(DesignSystem.Text.Results.tabTitle)
+        .navigationTitle(AppStrings.Results.tabTitle)
         .navigationBarTitleDisplayMode(.large)
         .navigationBarBackButtonHidden(true)
         
