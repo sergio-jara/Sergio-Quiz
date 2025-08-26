@@ -30,19 +30,19 @@ final class WelcomeViewUITests: XCTestCase {
     // MARK: - WelcomeView UI Tests
     
     func testWelcomeViewInitialDisplay() throws {
-        // Test initial display of welcome screen using actual text from DesignSystem
-        XCTAssertTrue(app.staticTexts["Welcome to Dynamox Quiz!"].exists)
-        XCTAssertTrue(app.staticTexts["Test your knowledge with our interactive quiz"].exists)
-        XCTAssertTrue(app.staticTexts["Please enter your name to begin"].exists)
-        XCTAssertTrue(app.staticTexts["Ready to challenge yourself?"].exists)
-        XCTAssertTrue(app.staticTexts["10 questions • Multiple choice • Instant feedback"].exists)
+        // Test initial display of welcome screen using accessibility identifiers
+        XCTAssertTrue(app.staticTexts["welcome_title"].exists)
+        XCTAssertTrue(app.staticTexts["welcome_subtitle"].exists)
+        XCTAssertTrue(app.staticTexts["name_prompt"].exists)
+        XCTAssertTrue(app.staticTexts["footer_title"].exists)
+        XCTAssertTrue(app.staticTexts["footer_subtitle"].exists)
     }
     
     func testWelcomeViewUIElements() throws {
-        // Test that all UI elements are present
-        let welcomeText = app.staticTexts["Welcome to Dynamox Quiz!"]
-        let nameTextField = app.textFields["Your name"]
-        let startButton = app.buttons["Start Quiz"]
+        // Test that all UI elements are present using accessibility identifiers
+        let welcomeText = app.staticTexts["welcome_title"]
+        let nameTextField = app.textFields["name_text_field"]
+        let startButton = app.buttons["start_quiz_button"]
         
         XCTAssertTrue(welcomeText.exists)
         XCTAssertTrue(nameTextField.exists)
@@ -54,8 +54,8 @@ final class WelcomeViewUITests: XCTestCase {
     }
     
     func testWelcomeViewNameInputValidation() throws {
-        let nameTextField = app.textFields["Your name"]
-        let startButton = app.buttons["Start Quiz"]
+        let nameTextField = app.textFields["name_text_field"]
+        let startButton = app.buttons["start_quiz_button"]
         
         // Test valid name input
         nameTextField.tap()
@@ -66,8 +66,8 @@ final class WelcomeViewUITests: XCTestCase {
     }
     
     func testWelcomeViewNameValidationError() throws {
-        let nameTextField = app.textFields["Your name"]
-        let startButton = app.buttons["Start Quiz"]
+        let nameTextField = app.textFields["name_text_field"]
+        let startButton = app.buttons["start_quiz_button"]
         
         // Test invalid name input (too short)
         nameTextField.tap()
@@ -77,13 +77,13 @@ final class WelcomeViewUITests: XCTestCase {
         XCTAssertFalse(startButton.isEnabled)
         
         // Validation error should appear
-        let errorText = app.staticTexts["Name must be between 2 and 50 characters"]
+        let errorText = app.staticTexts["name_validation_error"]
         XCTAssertTrue(errorText.exists)
     }
     
     func testWelcomeViewNameInputWithWhitespace() throws {
-        let nameTextField = app.textFields["Your name"]
-        let startButton = app.buttons["Start Quiz"]
+        let nameTextField = app.textFields["name_text_field"]
+        let startButton = app.buttons["start_quiz_button"]
         
         // Test name with leading/trailing whitespace
         nameTextField.tap()
@@ -94,8 +94,8 @@ final class WelcomeViewUITests: XCTestCase {
     }
     
     func testWelcomeViewNameInputMaxLength() throws {
-        let nameTextField = app.textFields["Your name"]
-        let startButton = app.buttons["Start Quiz"]
+        let nameTextField = app.textFields["name_text_field"]
+        let startButton = app.buttons["start_quiz_button"]
         
         // Test name at maximum length (50 characters)
         let longName = String(repeating: "A", count: 50)
@@ -114,8 +114,8 @@ final class WelcomeViewUITests: XCTestCase {
     }
     
     func testWelcomeViewButtonStateChanges() throws {
-        let nameTextField = app.textFields["Your name"]
-        let startButton = app.buttons["Start Quiz"]
+        let nameTextField = app.textFields["name_text_field"]
+        let startButton = app.buttons["start_quiz_button"]
         
         // Initially button should be disabled
         XCTAssertFalse(startButton.isEnabled)
@@ -136,7 +136,7 @@ final class WelcomeViewUITests: XCTestCase {
     }
     
     func testWelcomeViewTextFieldFocus() throws {
-        let nameTextField = app.textFields["Your name"]
+        let nameTextField = app.textFields["name_text_field"]
         
         // Test text field can receive input
         nameTextField.tap()
@@ -148,16 +148,16 @@ final class WelcomeViewUITests: XCTestCase {
     
     
     func testWelcomeViewAccessibility() throws {
-        // Test accessibility labels and hints
-        let nameTextField = app.textFields["Your name"]
-        let startButton = app.buttons["Start Quiz"]
+        // Test accessibility labels and hints using accessibility identifiers
+        let nameTextField = app.textFields["name_text_field"]
+        let startButton = app.buttons["start_quiz_button"]
         
         // Verify elements exist and are accessible
         XCTAssertTrue(nameTextField.exists, "Name text field should be accessible")
         XCTAssertTrue(startButton.exists, "Start button should be accessible")
         
-        // Test that elements can be identified by their text content
-        let welcomeText = app.staticTexts["Welcome to Dynamox Quiz!"]
+        // Test that elements can be identified by their accessibility identifiers
+        let welcomeText = app.staticTexts["welcome_title"]
         XCTAssertTrue(welcomeText.exists, "Welcome text should be accessible")
         
         // Test that elements respond to accessibility actions
@@ -166,10 +166,10 @@ final class WelcomeViewUITests: XCTestCase {
     }
     
     func testWelcomeViewDesignSystemConsistency() throws {
-        // Test that design system constants are properly applied
-        let welcomeText = app.staticTexts["Welcome to Dynamox Quiz!"]
-        let nameTextField = app.textFields["Your name"]
-        let startButton = app.buttons["Start Quiz"]
+        // Test that design system constants are properly applied using accessibility identifiers
+        let welcomeText = app.staticTexts["welcome_title"]
+        let nameTextField = app.textFields["name_text_field"]
+        let startButton = app.buttons["start_quiz_button"]
         
         // Verify all elements exist and are properly styled
         XCTAssertTrue(welcomeText.exists)

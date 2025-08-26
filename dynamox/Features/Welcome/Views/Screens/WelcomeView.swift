@@ -27,9 +27,11 @@ struct WelcomeView: View {
                 Image(systemName: DesignSystem.Icons.brainProfile)
                     .font(.system(size: 50))
                     .foregroundColor(DesignSystem.Colors.primary)
+                    .accessibilityIdentifier("brain.head.profile")
                 Text(DesignSystem.Text.Welcome.title)
                     .heading3()
                     .multilineTextAlignment(.center)
+                    .accessibilityIdentifier("welcome_title")
                 
                 Text(DesignSystem.Text.Welcome.subtitle)
                     .textStyle(
@@ -37,6 +39,7 @@ struct WelcomeView: View {
                         color: DesignSystem.Colors
                             .textSecondary)
                     .multilineTextAlignment(.center)
+                    .accessibilityIdentifier("welcome_subtitle")
             }
             .opacity(isNameFieldFocused ? 0 : 1)
             .scaleEffect(isNameFieldFocused ? 0.8 : 1)
@@ -50,6 +53,7 @@ struct WelcomeView: View {
                     .multilineTextAlignment(.center)
                     .frame(height: 60, alignment: .center)
                     .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityIdentifier("name_prompt")
                 
                 VStack(alignment: .leading, spacing: DesignSystem.Spacing.sm) {
                     TextField(DesignSystem.Text.Welcome.namePlaceholder, text: $viewModel.userName)
@@ -73,12 +77,14 @@ struct WelcomeView: View {
                         }
                         .textInputAutocapitalization(.words)
                         .disableAutocorrection(true)
+                        .accessibilityIdentifier("name_text_field")
                 
                     if !viewModel.userName.isEmpty && !viewModel.isNameValid {
                         Text(DesignSystem.Text.Welcome.nameValidationError)
                             .caption()
                             .foregroundColor(DesignSystem.Colors.error)
                             .padding(.leading, DesignSystem.Spacing.xs)
+                            .accessibilityIdentifier("name_validation_error")
                     }
                     
                 }
@@ -101,6 +107,7 @@ struct WelcomeView: View {
                     DesignSystem.Animation.fast,
                     value: viewModel.canStartQuiz
                 )
+                .accessibilityIdentifier("start_quiz_button")
             }
             .horizontalPadding()
             
@@ -110,9 +117,11 @@ struct WelcomeView: View {
                 Text(DesignSystem.Text.Welcome.footerTitle)
                     .bodyMedium()
                     .foregroundColor(DesignSystem.Colors.textSecondary)
+                    .accessibilityIdentifier("footer_title")
                 Text(DesignSystem.Text.Welcome.footerSubtitle)
                     .caption()
                     .multilineTextAlignment(.center)
+                    .accessibilityIdentifier("footer_subtitle")
             }
         }
         .standardPadding()
