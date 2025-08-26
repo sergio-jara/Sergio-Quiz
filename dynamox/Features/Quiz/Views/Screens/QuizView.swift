@@ -21,12 +21,12 @@ struct QuizView: View {
                 }
             }
            
-            .alert(DesignSystem.Text.Quiz.error, isPresented: $viewModel.showError) {
-                Button(DesignSystem.Text.Quiz.ok) {
+                    .alert(AppStrings.Quiz.error, isPresented: $viewModel.showError) {
+            Button(AppStrings.Quiz.ok) {
                     viewModel.clearError()
                 }
             } message: {
-                Text(viewModel.errorMessage ?? DesignSystem.Text.Quiz.unknownError)
+                Text(viewModel.errorMessage ?? AppStrings.Quiz.unknownError)
             }
         }
     }
@@ -41,7 +41,7 @@ struct QuizView: View {
             ScrollView {
                 VStack(spacing: DesignSystem.Spacing.md) {
                     if viewModel.isLoading {
-                        ProgressView(DesignSystem.Text.Quiz.loadingQuestion)
+                        ProgressView(AppStrings.Quiz.loadingQuestion)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else if let question = viewModel.currentQuestion {
                         questionContent(question)
@@ -72,12 +72,12 @@ struct QuizView: View {
             HStack {
                 VStack(alignment: .leading, spacing: DesignSystem.Spacing.xs) {
                     if !viewModel.userName.isEmpty {
-                        Text(String(format: DesignSystem.Text.Quiz.helloFormat, viewModel.userName))
+                        Text(String(format: AppStrings.Quiz.helloFormat, viewModel.userName))
                             .heading3()
                             .foregroundColor(DesignSystem.Colors.primary)
                     }
                     
-                    Text(String(format: DesignSystem.Text.Quiz.questionNumberFormat, viewModel.currentQuestionNumber + 1, viewModel.totalQuestions))
+                    Text(String(format: AppStrings.Quiz.questionNumberFormat, viewModel.currentQuestionNumber + 1, viewModel.totalQuestions))
                             .textStyle(DesignSystem.Typography.bodySmall, color: DesignSystem.Colors.textSecondary)
                 }
                 
@@ -119,7 +119,7 @@ struct QuizView: View {
             
             // Answer options
             VStack(spacing: DesignSystem.Spacing.xs) {
-                Text(DesignSystem.Text.Quiz.selectAnswer)
+                Text(AppStrings.Quiz.selectAnswer)
                     .heading3()
                     .foregroundColor(DesignSystem.Colors.textSecondary)
                 
@@ -151,7 +151,7 @@ struct QuizView: View {
                         await viewModel.submitAnswer()
                     }
                 }) {
-                    Text(DesignSystem.Text.Quiz.submitAnswer)
+                    Text(AppStrings.Quiz.submitAnswer)
                         .textStyle(DesignSystem.Typography.button, color: .white)
                         .frame(maxWidth: .infinity)
                         .standardPadding()
@@ -173,7 +173,7 @@ struct QuizView: View {
                                 .scaleEffect(1.2)
                                 .animation(.spring(response: 0.4, dampingFraction: 0.6), value: viewModel.isAnswerCorrect)
                             
-                            Text(viewModel.isAnswerCorrect ? DesignSystem.Text.Quiz.correctAnswer : DesignSystem.Text.Quiz.incorrectAnswer)
+                            Text(viewModel.isAnswerCorrect ? AppStrings.Quiz.correctAnswer : AppStrings.Quiz.incorrectAnswer)
                                 .textStyle(DesignSystem.Typography.bodyMedium, color: viewModel.isAnswerCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error)
                                 .fontWeight(.medium)
                         }
@@ -196,7 +196,7 @@ struct QuizView: View {
                     Button(action: {
                         viewModel.nextQuestion()
                     }) {
-                        Text(viewModel.currentQuestionNumber + 1 >= viewModel.totalQuestions ? DesignSystem.Text.Quiz.finishQuiz : DesignSystem.Text.Quiz.nextQuestion)
+                        Text(viewModel.currentQuestionNumber + 1 >= viewModel.totalQuestions ? AppStrings.Quiz.finishQuiz : AppStrings.Quiz.nextQuestion)
                             .textStyle(DesignSystem.Typography.button, color: .white)
                             .frame(maxWidth: .infinity)
                             .standardPadding()
@@ -215,10 +215,10 @@ struct QuizView: View {
                 .font(.system(size: 60))
                 .foregroundColor(DesignSystem.Colors.secondary)
             
-            Text(DesignSystem.Text.Quiz.noQuestionAvailable)
+                            Text(AppStrings.Quiz.noQuestionAvailable)
                 .textStyle(DesignSystem.Typography.h4, color: DesignSystem.Colors.textSecondary)
             
-            Button(DesignSystem.Text.Quiz.loadQuestion) {
+                            Button(AppStrings.Quiz.loadQuestion) {
                 Task {
                     await viewModel.loadRandomQuestion()
                 }

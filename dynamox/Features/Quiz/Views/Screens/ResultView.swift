@@ -17,7 +17,7 @@ struct ResultView: View {
                 .font(.title2)
                 .foregroundColor(isCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error)
             
-            Text(isCorrect ? DesignSystem.Text.Quiz.correctAnswer : DesignSystem.Text.Quiz.incorrectAnswer)
+            Text(isCorrect ? AppStrings.Quiz.correctAnswer : AppStrings.Quiz.incorrectAnswer)
                 .textStyle(DesignSystem.Typography.bodyMedium, color: isCorrect ? DesignSystem.Colors.success : DesignSystem.Colors.error)
         }
         .padding(.horizontal, DesignSystem.Spacing.sm)

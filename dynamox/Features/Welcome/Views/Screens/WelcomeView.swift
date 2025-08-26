@@ -28,12 +28,12 @@ struct WelcomeView: View {
                     .font(.system(size: 50))
                     .foregroundColor(DesignSystem.Colors.primary)
                     .accessibilityIdentifier("brain.head.profile")
-                Text(DesignSystem.Text.Welcome.title)
+                Text(AppStrings.Welcome.title)
                     .heading3()
                     .multilineTextAlignment(.center)
                     .accessibilityIdentifier("welcome_title")
                 
-                Text(DesignSystem.Text.Welcome.subtitle)
+                Text(AppStrings.Welcome.subtitle)
                     .textStyle(
                         DesignSystem.Typography.title,
                         color: DesignSystem.Colors
@@ -47,7 +47,7 @@ struct WelcomeView: View {
             
             // Name Input Form
             VStack(spacing: DesignSystem.Spacing.lg) {
-                Text(DesignSystem.Text.Welcome.namePrompt)
+                Text(AppStrings.Welcome.namePrompt)
                     .heading3()
                     .foregroundColor(DesignSystem.Colors.textSecondary)
                     .multilineTextAlignment(.center)
@@ -56,7 +56,7 @@ struct WelcomeView: View {
                     .accessibilityIdentifier("name_prompt")
                 
                 VStack(alignment: .leading, spacing: DesignSystem.Spacing.sm) {
-                    TextField(DesignSystem.Text.Welcome.namePlaceholder, text: $viewModel.userName)
+                    TextField(AppStrings.Welcome.namePlaceholder, text: $viewModel.userName)
                         .textStyle(DesignSystem.Typography.h4)
                         .padding(.horizontal, DesignSystem.Spacing.md)
                         .padding(.vertical, DesignSystem.Spacing.sm)
@@ -80,7 +80,7 @@ struct WelcomeView: View {
                         .accessibilityIdentifier("name_text_field")
                 
                     if !viewModel.userName.isEmpty && !viewModel.isNameValid {
-                        Text(DesignSystem.Text.Welcome.nameValidationError)
+                        Text(AppStrings.Welcome.nameValidationError)
                             .caption()
                             .foregroundColor(DesignSystem.Colors.error)
                             .padding(.leading, DesignSystem.Spacing.xs)
@@ -92,7 +92,7 @@ struct WelcomeView: View {
                 Button(action: startQuiz) {
                     HStack {
                         Image(systemName: DesignSystem.Icons.play)
-                        Text(DesignSystem.Text.Welcome.startButton)
+                        Text(AppStrings.Welcome.startButton)
                     }
                     .textStyle(DesignSystem.Typography.button, color: .white)
                     .frame(maxWidth: .infinity)
@@ -114,11 +114,11 @@ struct WelcomeView: View {
             Spacer()
             
             VStack(spacing: DesignSystem.Spacing.sm) {
-                Text(DesignSystem.Text.Welcome.footerTitle)
+                Text(AppStrings.Welcome.footerTitle)
                     .bodyMedium()
                     .foregroundColor(DesignSystem.Colors.textSecondary)
                     .accessibilityIdentifier("footer_title")
-                Text(DesignSystem.Text.Welcome.footerSubtitle)
+                Text(AppStrings.Welcome.footerSubtitle)
                     .caption()
                     .multilineTextAlignment(.center)
                     .accessibilityIdentifier("footer_subtitle")

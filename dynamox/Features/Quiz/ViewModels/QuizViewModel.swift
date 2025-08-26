@@ -119,15 +119,15 @@ class QuizViewModel: BaseViewModel {
     var scoreMessage: String {
         switch percentageScore {
         case 90...100:
-            return DesignSystem.Text.Results.excellentScore
+            return AppStrings.Results.excellentScore
         case 70...89:
-            return DesignSystem.Text.Results.greatScore
+            return AppStrings.Results.greatScore
         case 50...69:
-            return DesignSystem.Text.Results.goodScore
+            return AppStrings.Results.goodScore
         case 30...49:
-            return DesignSystem.Text.Results.fairScore
+            return AppStrings.Results.fairScore
         default:
-            return DesignSystem.Text.Results.poorScore
+            return AppStrings.Results.poorScore
         }
     }
     

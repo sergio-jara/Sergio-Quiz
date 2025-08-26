@@ -22,7 +22,7 @@ struct MainTabView: View {
             )
                 .tabItem{
                     Image(systemName: DesignSystem.Icons.brainProfile)
-                    Text(DesignSystem.Text.Quiz.tabTitle)
+                    Text(AppStrings.Quiz.tabTitle)
                 }
             
             // Results Tab
@@ -31,7 +31,7 @@ struct MainTabView: View {
             )
             .tabItem {
                 Image(systemName: DesignSystem.Icons.results)
-                Text(DesignSystem.Text.Results.tabTitle)
+                Text(AppStrings.Results.tabTitle)
             }
         }
         .tabBarBackground()
