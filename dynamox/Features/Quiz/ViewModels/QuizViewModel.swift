@@ -12,16 +12,27 @@ class QuizViewModel: BaseViewModel {
     @Published var isQuizCompleted = false
     @Published var userName: String = ""
     
-    private let apiClient: QuizAPIClientProtocol
-    private let quizStorageService: QuizStorageServiceProtocol
+    // MARK: - Use Cases
+    private let startQuizUseCase: StartQuizUseCaseProtocol
+    private let loadNextQuestionUseCase: LoadNextQuestionUseCaseProtocol
+    private let submitAnswerUseCase: SubmitAnswerUseCaseProtocol
+    private let completeQuizUseCase: CompleteQuizUseCaseProtocol
+    private let scoreCalculationService: ScoreCalculationServiceProtocol
+    
     let totalQuestions = 10
     
     init(
-        apiClient: QuizAPIClientProtocol,
-        quizStorageService: QuizStorageServiceProtocol
+        startQuizUseCase: StartQuizUseCaseProtocol,
+        loadNextQuestionUseCase: LoadNextQuestionUseCaseProtocol,
+        submitAnswerUseCase: SubmitAnswerUseCaseProtocol,
+        completeQuizUseCase: CompleteQuizUseCaseProtocol,
+        scoreCalculationService: ScoreCalculationServiceProtocol
     ) {
-        self.apiClient = apiClient
-        self.quizStorageService = quizStorageService
+        self.startQuizUseCase = startQuizUseCase
+        self.loadNextQuestionUseCase = loadNextQuestionUseCase
+        self.submitAnswerUseCase = submitAnswerUseCase
+        self.completeQuizUseCase = completeQuizUseCase
+        self.scoreCalculationService = scoreCalculationService
         super.init()
     }
     
@@ -43,7 +54,7 @@ class QuizViewModel: BaseViewModel {
         
         do {
             clearError()
-            let question = try await apiClient.fetchRandomQuestion()
+            let question = try await loadNextQuestionUseCase.execute()
             currentQuestion = question
             resetQuizState()
             setLoading(false)
@@ -59,15 +70,15 @@ class QuizViewModel: BaseViewModel {
         do {
             setLoading(true)
             clearError()
-            let response = try await apiClient.submitAnswer(
+            let isCorrect = try await submitAnswerUseCase.execute(
                 questionId: question.id,
                 answer: selectedAnswer
             )
             
-            isAnswerCorrect = response.result
+            isAnswerCorrect = isCorrect
             isAnswerSubmitted = true
             
-            if response.result {
+            if isCorrect {
                 correctAnswers += 1
             }
             
@@ -87,7 +98,9 @@ class QuizViewModel: BaseViewModel {
         
         if currentQuestionNumber >= totalQuestions {
             isQuizCompleted = true
-            saveQuizResult()
+            Task {
+                await completeQuiz()
+            }
         } else {
             Task {
                 await loadRandomQuestion()
@@ -117,18 +130,9 @@ class QuizViewModel: BaseViewModel {
     }
     
     var scoreMessage: String {
-        switch percentageScore {
-        case 90...100:
-            return AppStrings.Results.excellentScore
-        case 70...89:
-            return AppStrings.Results.greatScore
-        case 50...69:
-            return AppStrings.Results.goodScore
-        case 30...49:
-            return AppStrings.Results.fairScore
-        default:
-            return AppStrings.Results.poorScore
-        }
+        let score = Int(percentageScore)
+        let performanceLevel = scoreCalculationService.evaluatePerformance(score: score)
+        return performanceLevel.message
     }
     
     // MARK: - Private Methods
@@ -138,15 +142,15 @@ class QuizViewModel: BaseViewModel {
         isAnswerCorrect = false
     }
     
-    private func saveQuizResult() {
-        let result = QuizResult(
-            userName: userName,
-            score: Int(percentageScore),
-            correctAnswers: correctAnswers,
-            totalQuestions: totalQuestions,
-            date: Date()
-        )
-        
-        quizStorageService.saveQuizResult(result)
+    private func completeQuiz() async {
+        do {
+            let _ = try await completeQuizUseCase.execute(
+                userName: userName,
+                correctAnswers: correctAnswers,
+                totalQuestions: totalQuestions
+            )
+        } catch {
+            handleError(error)
+        }
     }
 }

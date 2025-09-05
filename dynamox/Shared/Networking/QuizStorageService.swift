@@ -27,8 +27,10 @@ class QuizStorageService: QuizStorageServiceProtocol {
             return []
         }
         
-        return realmResults.sorted(byKeyPath: "date", ascending: false)
-            .map{ $0.toQuizResult() }
+        // Convert to array immediately to avoid threading issues
+        let resultsArray = Array(realmResults)
+        return resultsArray.sorted { $0.date > $1.date }
+            .map { $0.toQuizResult() }
     }
     
     // MARK: Statistics
@@ -37,7 +39,9 @@ class QuizStorageService: QuizStorageServiceProtocol {
         guard let realmResults = realmService.getAll(RealmQuizResult.self) else {
             return 0
         }
-        return realmResults.count
+        // Convert to array immediately to avoid threading issues
+        let resultsArray = Array(realmResults)
+        return resultsArray.count
     }
     
     func getAverageScore() -> Int {
@@ -45,9 +49,11 @@ class QuizStorageService: QuizStorageServiceProtocol {
             return 0
         }
         
-        guard !results.isEmpty else { return 0 }
+        // Convert to array immediately to avoid threading issues
+        let resultsArray = Array(results)
+        guard !resultsArray.isEmpty else { return 0 }
         
-        let totalScore = results.reduce(0) { $0 + $1.score }
-        return totalScore / results.count
+        let totalScore = resultsArray.reduce(0) { $0 + $1.score }
+        return totalScore / resultsArray.count
     }
 }

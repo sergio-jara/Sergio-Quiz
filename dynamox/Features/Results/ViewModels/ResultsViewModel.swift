@@ -14,34 +14,51 @@ class ResultsViewModel: BaseViewModel {
     @Published var totalQuizzes: Int = 0
     @Published var averageScore: Int = 0
     
-    private let quizStorageService: QuizStorageServiceProtocol
+    private let quizRepository: QuizRepositoryProtocol
     
     var hasResult: Bool {
         !recentResults.isEmpty
     }
     
-    init(quizStorageService: QuizStorageServiceProtocol) {
-        self.quizStorageService = quizStorageService
+    init(quizRepository: QuizRepositoryProtocol) {
+        self.quizRepository = quizRepository
         super.init()
-        loadResults()
+        Task {
+            await loadResults()
+        }
     }
     
-    func loadResults() {
-        recentResults = quizStorageService.loadQuizResults()
-        updateStatistics()
+    func loadResults() async {
+        do {
+            let results = try await quizRepository.loadQuizResults()
+            let total = try await quizRepository.getTotalQuizzes()
+            let average = try await quizRepository.getAverageScore()
+            
+            // Update UI properties (already on main thread due to @MainActor)
+            recentResults = results
+            totalQuizzes = total
+            averageScore = average
+        } catch {
+            handleError(error)
+        }
     }
     
-    func saveResult(_ result: QuizResult) {
-        // Save to storage service first
-        quizStorageService.saveQuizResult(result)
-        
-        // Then update local array
-        recentResults.insert(result, at: 0)
-        updateStatistics()
+    func saveResult(_ result: QuizResult) async {
+        do {
+            try await quizRepository.saveQuizResult(result)
+            
+            // Update UI properties (already on main thread due to @MainActor)
+            recentResults.insert(result, at: 0)
+            updateStatistics()
+        } catch {
+            handleError(error)
+        }
     }
     
     func refreshResults() {
-        loadResults()
+        Task {
+            await loadResults()
+        }
     }
     
     private func updateStatistics() {

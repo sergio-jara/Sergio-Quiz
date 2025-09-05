@@ -20,6 +20,8 @@ class BaseViewModel: ObservableObject {
     func handleError(_ error: Error) {
         if let apiError = error as? APIError {
             errorMessage = apiError.errorDescription
+        } else if let quizError = error as? QuizError {
+            errorMessage = quizError.errorDescription
         } else {
             errorMessage = error.localizedDescription
         }
