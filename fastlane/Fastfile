@@ -25,7 +25,9 @@ platform :ios do
       skip_build: false,
       result_bundle: true,
       output_directory: "test_output",
-      only_testing: ["dynamoxTests"]
+      only_testing: ["dynamoxTests"],
+      code_coverage: true,
+      output_types: "html,junit"
     )
   end
 
@@ -110,8 +112,35 @@ platform :ios do
       skip_package_dependencies_resolution: false,
       disable_package_automatic_updates: true,
       skip_detect_devices: true,
-      ensure_devices_found: false
+      ensure_devices_found: false,
+      code_coverage: true,
+      output_types: "html,junit"
     )
+  end
+
+  desc "Run tests with detailed coverage report"
+  lane :coverage do
+    scan(
+      workspace: "dynamox.xcworkspace",
+      scheme: "dynamox",
+      destination: "platform=iOS Simulator,OS=latest",
+      clean: true,
+      skip_build: false,
+      result_bundle: true,
+      output_directory: "test_output",
+      only_testing: ["dynamoxTests"],
+      code_coverage: true,
+      output_types: "html,junit",
+      output_files: "report.html,report.xml"
+    )
+    
+    # Generate additional coverage report
+    sh "xcrun xccov view --report test_output/dynamox.xcresult > test_output/coverage.txt"
+    
+    UI.success "📊 Coverage report generated!"
+    UI.success "📁 HTML Report: test_output/report.html"
+    UI.success "📄 Text Report: test_output/coverage.txt"
+    UI.success "📋 JUnit Report: test_output/report.xml"
   end
 
   desc "Clean build artifacts"
