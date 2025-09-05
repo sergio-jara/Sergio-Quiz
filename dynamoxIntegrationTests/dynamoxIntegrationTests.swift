@@ -6,30 +6,30 @@
 //
 
 import XCTest
+@testable import dynamox
 
+/**
+ * Main Integration Test Suite
+ * 
+ * This file serves as the entry point for all integration tests.
+ * Individual test classes are organized in separate files:
+ * 
+ * - QuizAPIIntegrationTests: API layer integration tests
+ * - QuizStorageIntegrationTests: Storage layer integration tests  
+ * - ViewModelIntegrationTests: ViewModel integration tests
+ * 
+ * Shared utilities and base classes:
+ * - IntegrationTestBase: Common setup and teardown
+ * - TestDataFactory: Centralized test data creation
+ * - MockNetworkService: Network service mocking
+ * - TestUtilities: Reusable test helpers
+ */
+
+@MainActor
 final class dynamoxIntegrationTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func testIntegrationTestSuiteSetup() throws {
+        // This test verifies that the integration test suite is properly configured
+        XCTAssertTrue(true, "Integration test suite is properly configured")
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

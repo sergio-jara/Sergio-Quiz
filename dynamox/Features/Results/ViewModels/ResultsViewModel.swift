@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class ResultsViewModel: BaseViewModel {
@@ -31,6 +32,10 @@ class ResultsViewModel: BaseViewModel {
     }
     
     func saveResult(_ result: QuizResult) {
+        // Save to storage service first
+        quizStorageService.saveQuizResult(result)
+        
+        // Then update local array
         recentResults.insert(result, at: 0)
         updateStatistics()
     }
@@ -49,5 +54,4 @@ class ResultsViewModel: BaseViewModel {
             averageScore = 0
         }
     }
-    
 }
