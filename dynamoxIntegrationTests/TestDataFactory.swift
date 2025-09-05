@@ -21,6 +21,14 @@ class TestDataFactory {
         """
     }
     
+    static func createValidQuestionObject() -> QuizQuestion {
+        return QuizQuestion(
+            id: "test-question-\(UUID().uuidString)",
+            statement: "What is 2+2?",
+            options: ["3", "4", "5", "6"]
+        )
+    }
+    
     static func createValidAnswerResponse() -> String {
         return """
         {

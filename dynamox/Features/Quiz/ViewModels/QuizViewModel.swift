@@ -42,7 +42,15 @@ class QuizViewModel: BaseViewModel {
         setLoading(true)
         clearError()
         Task {
-            await loadRandomQuestion()
+            do {
+                let question = try await startQuizUseCase.execute(userName: name)
+                currentQuestion = question
+                resetQuizState()
+                setLoading(false)
+            } catch {
+                handleError(error)
+                setLoading(false)
+            }
         }
     }
     

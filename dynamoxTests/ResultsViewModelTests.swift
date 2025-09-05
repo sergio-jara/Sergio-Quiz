@@ -12,17 +12,17 @@ import XCTest
 final class ResultsViewModelTests: XCTestCase {
     
     // MARK: - Properties
-    private var mockQuizStorageService: MockQuizStorageService!
+    private var mockQuizRepository: MockQuizRepository!
     private var viewModel: ResultsViewModel!
     
     // MARK: - Setup and Teardown
     override func setUpWithError() throws {
-        mockQuizStorageService = MockQuizStorageService()
-        viewModel = ResultsViewModel(quizStorageService: mockQuizStorageService)
+        mockQuizRepository = MockQuizRepository()
+        viewModel = ResultsViewModel(quizRepository: mockQuizRepository)
     }
     
     override func tearDownWithError() throws {
-        mockQuizStorageService = nil
+        mockQuizRepository = nil
         viewModel = nil
     }
     
@@ -39,13 +39,13 @@ final class ResultsViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.showError)
     }
     
-    func testResultsViewModelLoadResultsSuccess() throws {
+    func testResultsViewModelLoadResultsSuccess() async throws {
         // Setup mock results
         let mockResults = createMockResults()
-        mockQuizStorageService.mockResults = mockResults
+        mockQuizRepository.mockResults = mockResults
         
         // Test loading results
-        viewModel.loadResults()
+        await viewModel.loadResults()
         
         XCTAssertEqual(viewModel.recentResults.count, 3)
         XCTAssertEqual(viewModel.totalQuizzes, 3)
@@ -56,12 +56,12 @@ final class ResultsViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.showError)
     }
     
-    func testResultsViewModelLoadResultsEmpty() throws {
+    func testResultsViewModelLoadResultsEmpty() async throws {
         // Setup empty results
-        mockQuizStorageService.mockResults = []
+        mockQuizRepository.mockResults = []
         
         // Test loading empty results
-        viewModel.loadResults()
+        await viewModel.loadResults()
         
         XCTAssertTrue(viewModel.recentResults.isEmpty)
         XCTAssertEqual(viewModel.totalQuizzes, 0)
@@ -69,11 +69,11 @@ final class ResultsViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.hasResult)
     }
     
-    func testResultsViewModelSaveResult() throws {
+    func testResultsViewModelSaveResult() async throws {
         // Setup initial state with some results
         let initialResults = createMockResults()
-        mockQuizStorageService.mockResults = initialResults
-        viewModel.loadResults()
+        mockQuizRepository.mockResults = initialResults
+        await viewModel.loadResults()
         
         let initialCount = viewModel.recentResults.count
         let initialTotalQuizzes = viewModel.totalQuizzes
@@ -87,7 +87,7 @@ final class ResultsViewModelTests: XCTestCase {
             totalQuestions: 10
         )
         
-        viewModel.saveResult(newResult)
+        await viewModel.saveResult(newResult)
         
         // Verify new result is added at the beginning
         XCTAssertEqual(viewModel.recentResults.count, initialCount + 1)
@@ -99,10 +99,10 @@ final class ResultsViewModelTests: XCTestCase {
         XCTAssertNotEqual(viewModel.averageScore, initialAverageScore)
     }
     
-    func testResultsViewModelSaveResultToEmptyList() throws {
+    func testResultsViewModelSaveResultToEmptyList() async throws {
         // Ensure empty state
-        mockQuizStorageService.mockResults = []
-        viewModel.loadResults()
+        mockQuizRepository.mockResults = []
+        await viewModel.loadResults()
         
         // Save first result
         let firstResult = QuizResult(
@@ -112,7 +112,7 @@ final class ResultsViewModelTests: XCTestCase {
             totalQuestions: 10
         )
         
-        viewModel.saveResult(firstResult)
+        await viewModel.saveResult(firstResult)
         
         XCTAssertEqual(viewModel.recentResults.count, 1)
         XCTAssertEqual(viewModel.totalQuizzes, 1)
@@ -120,11 +120,11 @@ final class ResultsViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.hasResult)
     }
     
-    func testResultsViewModelRefreshResults() throws {
+    func testResultsViewModelRefreshResults() async throws {
         // Setup initial state
         let initialResults = createMockResults()
-        mockQuizStorageService.mockResults = initialResults
-        viewModel.loadResults()
+        mockQuizRepository.mockResults = initialResults
+        await viewModel.loadResults()
         
         let initialCount = viewModel.recentResults.count
         
@@ -132,10 +132,13 @@ final class ResultsViewModelTests: XCTestCase {
         let newResults = [
             QuizResult(userName: "Updated User", score: 95, correctAnswers: 9, totalQuestions: 10)
         ]
-        mockQuizStorageService.mockResults = newResults
+        mockQuizRepository.mockResults = newResults
         
         // Refresh results
         viewModel.refreshResults()
+        
+        // Wait for async operation to complete
+        try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         // Verify results are updated
         XCTAssertEqual(viewModel.recentResults.count, 1)
@@ -144,7 +147,7 @@ final class ResultsViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.recentResults.first?.userName, "Updated User")
     }
     
-    func testResultsViewModelStatisticsCalculation() throws {
+    func testResultsViewModelStatisticsCalculation() async throws {
         // Test various score combinations
         let testCases = [
             ([QuizResult(userName: "User1", score: 100, correctAnswers: 10, totalQuestions: 10)], 100),
@@ -156,8 +159,8 @@ final class ResultsViewModelTests: XCTestCase {
         ]
         
         for (results, expectedAverage) in testCases {
-            mockQuizStorageService.mockResults = results
-            viewModel.loadResults()
+            mockQuizRepository.mockResults = results
+            await viewModel.loadResults()
             
             XCTAssertEqual(viewModel.totalQuizzes, results.count)
             XCTAssertEqual(viewModel.averageScore, expectedAverage)
@@ -165,30 +168,30 @@ final class ResultsViewModelTests: XCTestCase {
         }
     }
     
-    func testResultsViewModelAverageScoreRounding() throws {
+    func testResultsViewModelAverageScoreRounding() async throws {
         // Test that average score rounds down (integer division)
         let results = [
             QuizResult(userName: "User1", score: 85, correctAnswers: 8, totalQuestions: 10),
             QuizResult(userName: "User2", score: 86, correctAnswers: 8, totalQuestions: 10)
         ]
         
-        mockQuizStorageService.mockResults = results
-        viewModel.loadResults()
+        mockQuizRepository.mockResults = results
+        await viewModel.loadResults()
         
         // (85 + 86) / 2 = 85.5, should round down to 85
         XCTAssertEqual(viewModel.averageScore, 85)
     }
     
-    func testResultsViewModelHasResultComputedProperty() throws {
+    func testResultsViewModelHasResultComputedProperty() async throws {
         // Test empty state
-        mockQuizStorageService.mockResults = []
-        viewModel.loadResults()
+        mockQuizRepository.mockResults = []
+        await viewModel.loadResults()
         XCTAssertFalse(viewModel.hasResult)
         
         // Test with results
         let results = [QuizResult(userName: "User", score: 80, correctAnswers: 8, totalQuestions: 10)]
-        mockQuizStorageService.mockResults = results
-        viewModel.loadResults()
+        mockQuizRepository.mockResults = results
+        await viewModel.loadResults()
         XCTAssertTrue(viewModel.hasResult)
     }
     
@@ -215,7 +218,7 @@ final class ResultsViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.showError)
     }
     
-    func testResultsViewModelResultOrdering() throws {
+    func testResultsViewModelResultOrdering() async throws {
         // Test that results are maintained in the order they were added
         let results = [
             QuizResult(userName: "First", score: 80, correctAnswers: 8, totalQuestions: 10),
@@ -223,26 +226,26 @@ final class ResultsViewModelTests: XCTestCase {
             QuizResult(userName: "Third", score: 70, correctAnswers: 7, totalQuestions: 10)
         ]
         
-        mockQuizStorageService.mockResults = results
-        viewModel.loadResults()
+        mockQuizRepository.mockResults = results
+        await viewModel.loadResults()
         
         XCTAssertEqual(viewModel.recentResults[0].userName, "First")
         XCTAssertEqual(viewModel.recentResults[1].userName, "Second")
         XCTAssertEqual(viewModel.recentResults[2].userName, "Third")
     }
     
-    func testResultsViewModelSaveResultMaintainsOrder() throws {
+    func testResultsViewModelSaveResultMaintainsOrder() async throws {
         // Setup initial results
         let initialResults = [
             QuizResult(userName: "User1", score: 80, correctAnswers: 8, totalQuestions: 10),
             QuizResult(userName: "User2", score: 90, correctAnswers: 9, totalQuestions: 10)
         ]
-        mockQuizStorageService.mockResults = initialResults
-        viewModel.loadResults()
+        mockQuizRepository.mockResults = initialResults
+        await viewModel.loadResults()
         
         // Save new result
         let newResult = QuizResult(userName: "NewUser", score: 100, correctAnswers: 10, totalQuestions: 10)
-        viewModel.saveResult(newResult)
+        await viewModel.saveResult(newResult)
         
         // Verify new result is inserted at the beginning
         XCTAssertEqual(viewModel.recentResults[0].userName, "NewUser")
@@ -261,36 +264,46 @@ final class ResultsViewModelTests: XCTestCase {
     }
 }
 
-// MARK: - Mock Quiz Storage Service
+// MARK: - Mock Quiz Repository
 @MainActor
-private class MockQuizStorageService: QuizStorageServiceProtocol {
+private class MockQuizRepository: QuizRepositoryProtocol {
     var mockResults: [QuizResult] = []
     var shouldThrowError = false
     var mockError: Error?
     
-    func saveQuizResult(_ result: QuizResult) {
+    func fetchRandomQuestion() async throws -> QuizQuestion {
+        throw QuizError.networkUnavailable
+    }
+    
+    func submitAnswer(questionId: String, answer: String) async throws -> Bool {
+        throw QuizError.networkUnavailable
+    }
+    
+    func saveQuizResult(_ result: QuizResult) async throws {
         if shouldThrowError {
-            // In a real scenario, this might throw an error
-            // For now, we'll just simulate success
+            throw mockError ?? QuizError.storageError
         }
-        // The mock doesn't actually persist data, just stores it for testing
         mockResults.append(result)
     }
     
-    func loadQuizResults() -> [QuizResult] {
+    func loadQuizResults() async throws -> [QuizResult] {
         if shouldThrowError {
-            // In a real scenario, this might throw an error
-            // For now, we'll just return empty array
-            return []
+            throw mockError ?? QuizError.storageError
         }
         return mockResults
     }
     
-    func getTotalQuizzes() -> Int {
+    func getTotalQuizzes() async throws -> Int {
+        if shouldThrowError {
+            throw mockError ?? QuizError.storageError
+        }
         return mockResults.count
     }
     
-    func getAverageScore() -> Int {
+    func getAverageScore() async throws -> Int {
+        if shouldThrowError {
+            throw mockError ?? QuizError.storageError
+        }
         guard !mockResults.isEmpty else { return 0 }
         let totalScore = mockResults.reduce(0) { $0 + $1.score }
         return totalScore / mockResults.count
