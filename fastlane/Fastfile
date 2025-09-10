@@ -97,8 +97,8 @@ platform :ios do
   desc "GitHub Actions - unit tests only (most compatible)"
   lane :github_actions do
     # Use direct xcodebuild to avoid Fastlane's showBuildSettings timeout
-    # Use a specific iPhone 16 simulator that's available
-    sh("xcodebuild test -project ../DynaQuiz.xcodeproj -scheme DynaQuiz -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.0' -only-testing:DynaQuizTests -resultBundlePath test_output/DynaQuiz.xcresult -enableCodeCoverage YES")
+    # Use iOS 18.5 which is the latest supported by GitHub-hosted runners
+    sh("xcodebuild test -project ../DynaQuiz.xcodeproj -scheme DynaQuiz -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' -only-testing:DynaQuizTests -resultBundlePath test_output/DynaQuiz.xcresult -enableCodeCoverage YES")
   end
 
   desc "Run tests with detailed coverage report"
