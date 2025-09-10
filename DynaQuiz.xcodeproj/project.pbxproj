@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17A764947F6C6DFE71B8DB36 /* libPods-DynaQuizUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1845CD4F27B6FF3083E78CE8 /* libPods-DynaQuizUITests.a */; };
-		1901AD4A0D72BF01D1B7B551 /* libPods-DynaQuizTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7879151BF043A5B6F1F9A937 /* libPods-DynaQuizTests.a */; };
-		4D7DD151FA96A0293B0B919C /* Pods_DynaQuiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A14CF59B1BD17F0F3FDD72 /* Pods_DynaQuiz.framework */; };
+		1AFD9B142E71BF9100AE1A98 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1AFD9B132E71BF9100AE1A98 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,19 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1845CD4F27B6FF3083E78CE8 /* libPods-DynaQuizUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DynaQuizUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A0531AC2E5A5F6A0076047B /* DynaQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynaQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6C61D62E6AFB1D00FCDC4F /* DynaQuizIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynaQuizIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A80E6942E5A686F00175BD9 /* DynaQuizTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynaQuizTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A80E6A12E5A688E00175BD9 /* DynaQuizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynaQuizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		39A14CF59B1BD17F0F3FDD72 /* Pods_DynaQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DynaQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7431A9F8BAFA34F1C1E85BD5 /* Pods-DynaQuizTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynaQuizTests.debug.xcconfig"; path = "Target Support Files/Pods-DynaQuizTests/Pods-DynaQuizTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7879151BF043A5B6F1F9A937 /* libPods-DynaQuizTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DynaQuizTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7FABD6DC3228561C65001579 /* Pods-DynaQuizUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynaQuizUITests.release.xcconfig"; path = "Target Support Files/Pods-DynaQuizUITests/Pods-DynaQuizUITests.release.xcconfig"; sourceTree = "<group>"; };
-		83352CB1559B6907C23F0EB8 /* Pods-DynaQuiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynaQuiz.release.xcconfig"; path = "Target Support Files/Pods-DynaQuiz/Pods-DynaQuiz.release.xcconfig"; sourceTree = "<group>"; };
-		9B9395FF99C5348AAF90112C /* Pods-DynaQuizTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynaQuizTests.release.xcconfig"; path = "Target Support Files/Pods-DynaQuizTests/Pods-DynaQuizTests.release.xcconfig"; sourceTree = "<group>"; };
-		9EC87AEF8F0E47A55E427CA7 /* Pods-DynaQuizUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynaQuizUITests.debug.xcconfig"; path = "Target Support Files/Pods-DynaQuizUITests/Pods-DynaQuizUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		AC15A3EE2B4E93A3345CEAA7 /* Pods-DynaQuiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynaQuiz.debug.xcconfig"; path = "Target Support Files/Pods-DynaQuiz/Pods-DynaQuiz.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -88,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D7DD151FA96A0293B0B919C /* Pods_DynaQuiz.framework in Frameworks */,
+				1AFD9B142E71BF9100AE1A98 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +92,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1901AD4A0D72BF01D1B7B551 /* libPods-DynaQuizTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +99,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17A764947F6C6DFE71B8DB36 /* libPods-DynaQuizUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,8 +113,6 @@
 				1A80E6A22E5A688E00175BD9 /* DynaQuizUITests */,
 				1A6C61D72E6AFB1D00FCDC4F /* DynaQuizIntegrationTests */,
 				1A0531AD2E5A5F6A0076047B /* Products */,
-				C58EAADAB18C70B515A0EDCA /* Pods */,
-				44833F7215D9883B3EABDE3E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,29 +127,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		44833F7215D9883B3EABDE3E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				39A14CF59B1BD17F0F3FDD72 /* Pods_DynaQuiz.framework */,
-				7879151BF043A5B6F1F9A937 /* libPods-DynaQuizTests.a */,
-				1845CD4F27B6FF3083E78CE8 /* libPods-DynaQuizUITests.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C58EAADAB18C70B515A0EDCA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AC15A3EE2B4E93A3345CEAA7 /* Pods-DynaQuiz.debug.xcconfig */,
-				83352CB1559B6907C23F0EB8 /* Pods-DynaQuiz.release.xcconfig */,
-				7431A9F8BAFA34F1C1E85BD5 /* Pods-DynaQuizTests.debug.xcconfig */,
-				9B9395FF99C5348AAF90112C /* Pods-DynaQuizTests.release.xcconfig */,
-				9EC87AEF8F0E47A55E427CA7 /* Pods-DynaQuizUITests.debug.xcconfig */,
-				7FABD6DC3228561C65001579 /* Pods-DynaQuizUITests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -172,11 +134,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A0531B72E5A5F6C0076047B /* Build configuration list for PBXNativeTarget "DynaQuiz" */;
 			buildPhases = (
-				98C75EB4202485F37D0A2BF5 /* [CP] Check Pods Manifest.lock */,
 				1A0531A82E5A5F6A0076047B /* Sources */,
 				1A0531A92E5A5F6A0076047B /* Frameworks */,
 				1A0531AA2E5A5F6A0076047B /* Resources */,
-				4C9106A39FDA23A6E1A812ED /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -215,7 +175,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A80E69C2E5A686F00175BD9 /* Build configuration list for PBXNativeTarget "DynaQuizTests" */;
 			buildPhases = (
-				5591C73D3CD1BA4389883632 /* [CP] Check Pods Manifest.lock */,
 				1A80E6902E5A686F00175BD9 /* Sources */,
 				1A80E6912E5A686F00175BD9 /* Frameworks */,
 				1A80E6922E5A686F00175BD9 /* Resources */,
@@ -237,7 +196,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A80E6A92E5A688E00175BD9 /* Build configuration list for PBXNativeTarget "DynaQuizUITests" */;
 			buildPhases = (
-				DC2B1065EBA212C857014929 /* [CP] Check Pods Manifest.lock */,
 				1A80E69D2E5A688E00175BD9 /* Sources */,
 				1A80E69E2E5A688E00175BD9 /* Frameworks */,
 				1A80E69F2E5A688E00175BD9 /* Resources */,
@@ -291,6 +249,9 @@
 			);
 			mainGroup = 1A0531A32E5A5F6A0076047B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1AFD9B122E71BF9100AE1A98 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1A0531AD2E5A5F6A0076047B /* Products */;
 			projectDirPath = "";
@@ -334,92 +295,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4C9106A39FDA23A6E1A812ED /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DynaQuiz/Pods-DynaQuiz-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DynaQuiz/Pods-DynaQuiz-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DynaQuiz/Pods-DynaQuiz-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5591C73D3CD1BA4389883632 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DynaQuizTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		98C75EB4202485F37D0A2BF5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DynaQuiz-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC2B1065EBA212C857014929 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DynaQuizUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1A0531A82E5A5F6A0076047B /* Sources */ = {
@@ -594,7 +469,6 @@
 		};
 		1A0531B82E5A5F6C0076047B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC15A3EE2B4E93A3345CEAA7 /* Pods-DynaQuiz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -625,7 +499,6 @@
 		};
 		1A0531B92E5A5F6C0076047B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83352CB1559B6907C23F0EB8 /* Pods-DynaQuiz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -694,7 +567,6 @@
 		};
 		1A80E69A2E5A686F00175BD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7431A9F8BAFA34F1C1E85BD5 /* Pods-DynaQuizTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -714,7 +586,6 @@
 		};
 		1A80E69B2E5A686F00175BD9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B9395FF99C5348AAF90112C /* Pods-DynaQuizTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -734,7 +605,6 @@
 		};
 		1A80E6AA2E5A688E00175BD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9EC87AEF8F0E47A55E427CA7 /* Pods-DynaQuizUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -752,7 +622,6 @@
 		};
 		1A80E6AB2E5A688E00175BD9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FABD6DC3228561C65001579 /* Pods-DynaQuizUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -817,6 +686,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1AFD9B122E71BF9100AE1A98 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1AFD9B132E71BF9100AE1A98 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AFD9B122E71BF9100AE1A98 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A0531A42E5A5F6A0076047B /* Project object */;
 }

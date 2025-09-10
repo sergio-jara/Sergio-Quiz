@@ -3,9 +3,8 @@ default_platform(:ios)
 platform :ios do
   desc "Build the app"
   lane :build do
-    cocoapods
     build_ios_app(
-      workspace: "DynaQuiz.xcworkspace",
+      project: "DynaQuiz.xcodeproj",
       scheme: "DynaQuiz",
       configuration: "Debug",
       clean: true,
@@ -18,7 +17,7 @@ platform :ios do
   desc "Run unit tests only (without cocoapods)"
   lane :unit_test_only do
     scan(
-      workspace: "DynaQuiz.xcworkspace",
+      project: "DynaQuiz.xcodeproj",
       scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,OS=latest",
       clean: true,
@@ -33,9 +32,8 @@ platform :ios do
 
   desc "Run unit tests only"
   lane :unit_test do
-    cocoapods
     scan(
-      workspace: "DynaQuiz.xcworkspace",
+      project: "DynaQuiz.xcodeproj",
       scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,id=BD104AFC-1D8A-43E6-BEA2-DF9CD117DD73",
       clean: true,
@@ -47,9 +45,8 @@ platform :ios do
 
   desc "Run UI tests only"
   lane :ui_test do
-    cocoapods
     scan(
-      workspace: "DynaQuiz.xcworkspace",
+      project: "DynaQuiz.xcodeproj",
       scheme: "DynaQuizUITests",
       destination: "platform=iOS Simulator,OS=latest",
       clean: true,
@@ -61,9 +58,8 @@ platform :ios do
 
   desc "CI pipeline - build and unit tests only"
   lane :ci do
-    cocoapods
     build_ios_app(
-      workspace: "DynaQuiz.xcworkspace",
+      project: "DynaQuiz.xcodeproj",
       scheme: "DynaQuiz",
       configuration: "Debug",
       clean: true,
@@ -73,7 +69,7 @@ platform :ios do
     )
     
     scan(
-      workspace: "DynaQuiz.xcworkspace",
+      project: "DynaQuiz.xcodeproj",
       scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,OS=latest",
       clean: false,
@@ -87,7 +83,7 @@ platform :ios do
   desc "CI pipeline - unit tests only (no build, no UI tests)"
   lane :ci_unit_tests_only do
     scan(
-      workspace: "DynaQuiz.xcworkspace",
+      project: "DynaQuiz.xcodeproj",
       scheme: "DynaQuiz",
       destination: "generic/platform=iOS Simulator",
       clean: true,
@@ -100,30 +96,14 @@ platform :ios do
 
   desc "GitHub Actions - unit tests only (most compatible)"
   lane :github_actions do
-    scan(
-      workspace: "DynaQuiz.xcworkspace",
-      scheme: "DynaQuiz",
-      destination: "platform=iOS Simulator,OS=latest",  # ← no device name
-      clean: true,
-      skip_build: false,
-      result_bundle: true,
-      output_directory: "test_output",
-      only_testing: ["DynaQuizTests"],
-      # delete these — they cause flaky detection on CI:
-      # skip_package_dependencies_resolution: true,
-      # disable_package_automatic_updates: true,
-      # skip_detect_devices: true,
-      # ensure_devices_found: false,
-      code_coverage: true,
-      output_types: "html,junit",
-      suppress_xcode_output: false
-    )
+    # Use direct xcodebuild to avoid Fastlane's showBuildSettings timeout
+    sh("xcodebuild test -project DynaQuiz.xcodeproj -scheme DynaQuiz -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.0' -only-testing:DynaQuizTests -resultBundlePath test_output/DynaQuiz.xcresult -enableCodeCoverage YES")
   end
 
   desc "Run tests with detailed coverage report"
   lane :coverage do
     scan(
-      workspace: "DynaQuiz.xcworkspace",
+      project: "DynaQuiz.xcodeproj",
       scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,OS=latest",
       clean: true,

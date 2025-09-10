@@ -29,10 +29,6 @@ jobs:
       run: |
         bundle install
         
-    - name: Install CocoaPods
-      run: |
-        bundle exec pod install --repo-update
-        
     - name: Run Unit Tests with Coverage
       run: |
         bundle exec fastlane github_actions

@@ -55,6 +55,30 @@ Run UI tests only
 
 CI pipeline - build and unit tests only
 
+### ios ci_unit_tests_only
+
+```sh
+[bundle exec] fastlane ios ci_unit_tests_only
+```
+
+CI pipeline - unit tests only (no build, no UI tests)
+
+### ios github_actions
+
+```sh
+[bundle exec] fastlane ios github_actions
+```
+
+GitHub Actions - unit tests only (most compatible)
+
+### ios coverage
+
+```sh
+[bundle exec] fastlane ios coverage
+```
+
+Run tests with detailed coverage report
+
 ### ios clean
 
 ```sh
