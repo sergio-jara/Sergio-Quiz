@@ -103,7 +103,7 @@ platform :ios do
     
     # Use xcodebuild to find available destinations and pick the first iPhone simulator
     # This is more reliable than simctl as it shows what xcodebuild can actually use
-    destinations = sh("xcodebuild -project ../DynaQuiz.xcodeproj -scheme DynaQuiz -showdestinations | grep 'iPhone' | head -1", log: false)
+    destinations = sh("xcodebuild -project ../DynaQuiz.xcodeproj -scheme DynaQuiz -showdestinations | grep 'platform:iOS Simulator' | grep 'iPhone' | head -1", log: false)
     
     if destinations.empty?
       UI.error("No iPhone simulators found in available destinations!")
