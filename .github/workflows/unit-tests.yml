@@ -29,44 +29,6 @@ jobs:
       run: |
         bundle install
         
-    - name: Install CocoaPods
-      run: |
-        bundle exec pod install --repo-update
-        
-    - name: Run Unit Tests with Coverage
+    - name: Run Unit Tests
       run: |
         bundle exec fastlane github_actions
-        
-    - name: Generate Coverage Report
-      run: |
-        xcrun xccov view --report test_output/dynamox.xcresult > test_output/coverage.txt
-        
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      with:
-        name: unit-test-results
-        path: test_output/
-        retention-days: 7
-        
-    - name: Comment Coverage on PR
-      if: github.event_name == 'pull_request'
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const fs = require('fs');
-          try {
-            const coverage = fs.readFileSync('test_output/coverage.txt', 'utf8');
-            const lines = coverage.split('\n');
-            const summaryLine = lines.find(line => line.includes('Total Coverage:'));
-            
-            if (summaryLine) {
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `## 📊 Test Coverage Report\n\n\`\`\`\n${summaryLine}\n\`\`\`\n\n📁 Full report available in [test artifacts](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`
-              });
-            }
-          } catch (error) {
-            console.log('Could not read coverage file:', error.message);
-          }

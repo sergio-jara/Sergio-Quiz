@@ -3,10 +3,9 @@ default_platform(:ios)
 platform :ios do
   desc "Build the app"
   lane :build do
-    cocoapods
     build_ios_app(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      project: "DynaQuiz.xcodeproj",
+      scheme: "DynaQuiz",
       configuration: "Debug",
       clean: true,
       output_directory: "build",
@@ -18,14 +17,14 @@ platform :ios do
   desc "Run unit tests only (without cocoapods)"
   lane :unit_test_only do
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      project: "DynaQuiz.xcodeproj",
+      scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,OS=latest",
       clean: true,
       skip_build: false,
       result_bundle: true,
       output_directory: "test_output",
-      only_testing: ["SergioTests"],
+      only_testing: ["DynaQuizTests"],
       code_coverage: true,
       output_types: "html,junit"
     )
@@ -33,10 +32,9 @@ platform :ios do
 
   desc "Run unit tests only"
   lane :unit_test do
-    cocoapods
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      project: "DynaQuiz.xcodeproj",
+      scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,id=BD104AFC-1D8A-43E6-BEA2-DF9CD117DD73",
       clean: true,
       skip_build: false,
@@ -47,10 +45,9 @@ platform :ios do
 
   desc "Run UI tests only"
   lane :ui_test do
-    cocoapods
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "SergioUITests",
+      project: "DynaQuiz.xcodeproj",
+      scheme: "DynaQuizUITests",
       destination: "platform=iOS Simulator,OS=latest",
       clean: true,
       skip_build: false,
@@ -61,10 +58,9 @@ platform :ios do
 
   desc "CI pipeline - build and unit tests only"
   lane :ci do
-    cocoapods
     build_ios_app(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      project: "DynaQuiz.xcodeproj",
+      scheme: "DynaQuiz",
       configuration: "Debug",
       clean: true,
       output_directory: "build",
@@ -73,69 +69,84 @@ platform :ios do
     )
     
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      project: "DynaQuiz.xcodeproj",
+      scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,OS=latest",
       clean: false,
       skip_build: true,
       result_bundle: true,
       output_directory: "test_output",
-      only_testing: ["SergioTests"]
+      only_testing: ["DynaQuizTests"]
     )
   end
 
   desc "CI pipeline - unit tests only (no build, no UI tests)"
   lane :ci_unit_tests_only do
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      project: "DynaQuiz.xcodeproj",
+      scheme: "DynaQuiz",
       destination: "generic/platform=iOS Simulator",
       clean: true,
       skip_build: false,
       result_bundle: true,
       output_directory: "test_output",
-      only_testing: ["SergioTests"]
+      only_testing: ["DynaQuizTests"]
     )
   end
 
-  desc "GitHub Actions - unit tests only (most compatible)"
+  desc "GitHub Actions - unit tests only (simple and robust)"
   lane :github_actions do
-    scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
-      destination: "platform=iOS Simulator,name=iPhone 16,OS=latest",
-      clean: true,
-      skip_build: false,
-      result_bundle: true,
-      output_directory: "test_output",
-      only_testing: ["SergioTests"],
-      skip_package_dependencies_resolution: false,
-      disable_package_automatic_updates: true,
-      skip_detect_devices: true,
-      ensure_devices_found: false,
-      code_coverage: true,
-      output_types: "html,junit"
-    )
+    # First, let's see what simulators are actually available
+    UI.message("Checking available simulators...")
+    available_simulators = sh("xcrun simctl list devices available", log: false)
+    UI.message("Available simulators: #{available_simulators}")
+    
+    # Use xcodebuild to find available destinations and pick the first iPhone simulator
+    # This is more reliable than simctl as it shows what xcodebuild can actually use
+    destinations = sh("xcodebuild -project ../DynaQuiz.xcodeproj -scheme DynaQuiz -showdestinations | grep 'platform:iOS Simulator' | grep 'iPhone' | head -1", log: false)
+    
+    if destinations.empty?
+      UI.error("No iPhone simulators found in available destinations!")
+      UI.error("Available simulators: #{available_simulators}")
+      next
+    end
+    
+    # Extract UDID from the destination line
+    # Format: "{ platform:iOS Simulator, arch:arm64, id:897B93E4-8BBB-4A79-875D-CAE1F59BE1C3, OS:18.0, name:iPhone 16 }"
+    device_match = destinations.match(/id:([A-F0-9-]+)/)
+    
+    if device_match.nil?
+      UI.error("Could not parse UDID from: #{destinations}")
+      UI.error("Available simulators: #{available_simulators}")
+      next
+    end
+    
+    device_udid = device_match[1]
+    
+    UI.success("Using iPhone simulator: #{device_udid}")
+    
+    # Use direct xcodebuild to avoid Fastlane's showBuildSettings timeout
+    sh("xcodebuild test -project ../DynaQuiz.xcodeproj -scheme DynaQuiz -destination 'platform=iOS Simulator,id=#{device_udid}' -only-testing:DynaQuizTests -resultBundlePath test_output/DynaQuiz.xcresult -enableCodeCoverage YES")
   end
 
   desc "Run tests with detailed coverage report"
   lane :coverage do
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      project: "DynaQuiz.xcodeproj",
+      scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,OS=latest",
       clean: true,
       skip_build: false,
       result_bundle: true,
       output_directory: "test_output",
-      only_testing: ["SergioTests"],
+      only_testing: ["DynaQuizTests"],
       code_coverage: true,
       output_types: "html,junit",
       output_files: "report.html,report.xml"
     )
     
     # Generate additional coverage report
-    sh "xcrun xccov view --report test_output/Sergio.xcresult > test_output/coverage.txt"
+    sh "xcrun xccov view --report test_output/DynaQuiz.xcresult > test_output/coverage.txt"
     
     UI.success "📊 Coverage report generated!"
     UI.success "📁 HTML Report: test_output/report.html"
