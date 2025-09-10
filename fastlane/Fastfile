@@ -115,7 +115,7 @@ platform :ios do
       ensure_devices_found: false,
       code_coverage: true,
       output_types: "html,junit",
-      skip_build_settings: true
+      suppress_xcode_output: true
     )
   end
 
