@@ -69,7 +69,7 @@ CI pipeline - unit tests only (no build, no UI tests)
 [bundle exec] fastlane ios github_actions
 ```
 
-GitHub Actions - unit tests only (robust)
+GitHub Actions - unit tests only (simple and robust)
 
 ### ios coverage
 
