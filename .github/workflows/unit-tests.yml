@@ -39,7 +39,7 @@ jobs:
         
     - name: Generate Coverage Report
       run: |
-        xcrun xccov view --report test_output/dynamox.xcresult > test_output/coverage.txt
+        xcrun xccov view --report test_output/Sergio.xcresult > test_output/coverage.txt
         
     - name: Upload test results
       uses: actions/upload-artifact@v4

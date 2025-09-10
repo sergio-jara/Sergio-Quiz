@@ -55,29 +55,21 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1A0531AE2E5A5F6A0076047B /* Sergio */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Sergio;
 			sourceTree = "<group>";
 		};
 		1A6C61D72E6AFB1D00FCDC4F /* SergioIntegrationTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = SergioIntegrationTests;
 			sourceTree = "<group>";
 		};
 		1A80E6952E5A686F00175BD9 /* SergioTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = SergioTests;
 			sourceTree = "<group>";
 		};
 		1A80E6A22E5A688E00175BD9 /* SergioUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = SergioUITests;
 			sourceTree = "<group>";
 		};
@@ -344,9 +336,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sergio/Pods-Sergio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sergio/Pods-Sergio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
