@@ -5,8 +5,8 @@ platform :ios do
   lane :build do
     cocoapods
     build_ios_app(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      workspace: "DynaQuiz.xcworkspace",
+      scheme: "DynaQuiz",
       configuration: "Debug",
       clean: true,
       output_directory: "build",
@@ -18,14 +18,14 @@ platform :ios do
   desc "Run unit tests only (without cocoapods)"
   lane :unit_test_only do
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      workspace: "DynaQuiz.xcworkspace",
+      scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,OS=latest",
       clean: true,
       skip_build: false,
       result_bundle: true,
       output_directory: "test_output",
-      only_testing: ["SergioTests"],
+      only_testing: ["DynaQuizTests"],
       code_coverage: true,
       output_types: "html,junit"
     )
@@ -35,8 +35,8 @@ platform :ios do
   lane :unit_test do
     cocoapods
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      workspace: "DynaQuiz.xcworkspace",
+      scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,id=BD104AFC-1D8A-43E6-BEA2-DF9CD117DD73",
       clean: true,
       skip_build: false,
@@ -49,8 +49,8 @@ platform :ios do
   lane :ui_test do
     cocoapods
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "SergioUITests",
+      workspace: "DynaQuiz.xcworkspace",
+      scheme: "DynaQuizUITests",
       destination: "platform=iOS Simulator,OS=latest",
       clean: true,
       skip_build: false,
@@ -63,8 +63,8 @@ platform :ios do
   lane :ci do
     cocoapods
     build_ios_app(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      workspace: "DynaQuiz.xcworkspace",
+      scheme: "DynaQuiz",
       configuration: "Debug",
       clean: true,
       output_directory: "build",
@@ -73,42 +73,42 @@ platform :ios do
     )
     
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      workspace: "DynaQuiz.xcworkspace",
+      scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,OS=latest",
       clean: false,
       skip_build: true,
       result_bundle: true,
       output_directory: "test_output",
-      only_testing: ["SergioTests"]
+      only_testing: ["DynaQuizTests"]
     )
   end
 
   desc "CI pipeline - unit tests only (no build, no UI tests)"
   lane :ci_unit_tests_only do
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      workspace: "DynaQuiz.xcworkspace",
+      scheme: "DynaQuiz",
       destination: "generic/platform=iOS Simulator",
       clean: true,
       skip_build: false,
       result_bundle: true,
       output_directory: "test_output",
-      only_testing: ["SergioTests"]
+      only_testing: ["DynaQuizTests"]
     )
   end
 
   desc "GitHub Actions - unit tests only (most compatible)"
   lane :github_actions do
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      workspace: "DynaQuiz.xcworkspace",
+      scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,name=iPhone 16,OS=latest",
       clean: true,
       skip_build: false,
       result_bundle: true,
       output_directory: "test_output",
-      only_testing: ["SergioTests"],
+      only_testing: ["DynaQuizTests"],
       skip_package_dependencies_resolution: false,
       disable_package_automatic_updates: true,
       skip_detect_devices: true,
@@ -121,21 +121,21 @@ platform :ios do
   desc "Run tests with detailed coverage report"
   lane :coverage do
     scan(
-      workspace: "Sergio.xcworkspace",
-      scheme: "Sergio",
+      workspace: "DynaQuiz.xcworkspace",
+      scheme: "DynaQuiz",
       destination: "platform=iOS Simulator,OS=latest",
       clean: true,
       skip_build: false,
       result_bundle: true,
       output_directory: "test_output",
-      only_testing: ["SergioTests"],
+      only_testing: ["DynaQuizTests"],
       code_coverage: true,
       output_types: "html,junit",
       output_files: "report.html,report.xml"
     )
     
     # Generate additional coverage report
-    sh "xcrun xccov view --report test_output/Sergio.xcresult > test_output/coverage.txt"
+    sh "xcrun xccov view --report test_output/DynaQuiz.xcresult > test_output/coverage.txt"
     
     UI.success "📊 Coverage report generated!"
     UI.success "📁 HTML Report: test_output/report.html"
