@@ -96,13 +96,19 @@ platform :ios do
 
   desc "GitHub Actions - unit tests only (simple and robust)"
   lane :github_actions do
-    # Use xcodebuild to find available destinations and pick the first iPhone 16
+    # First, let's see what simulators are actually available
+    UI.message("Checking available simulators...")
+    available_simulators = sh("xcrun simctl list devices available", log: false)
+    UI.message("Available simulators: #{available_simulators}")
+    
+    # Use xcodebuild to find available destinations and pick the first iPhone simulator
     # This is more reliable than simctl as it shows what xcodebuild can actually use
-    destinations = sh("xcodebuild -project ../DynaQuiz.xcodeproj -scheme DynaQuiz -showdestinations | grep 'iPhone 16' | head -1", log: false)
+    destinations = sh("xcodebuild -project ../DynaQuiz.xcodeproj -scheme DynaQuiz -showdestinations | grep 'iPhone' | head -1", log: false)
     
     if destinations.empty?
-      UI.error("No iPhone 16 simulators found in available destinations!")
-      return
+      UI.error("No iPhone simulators found in available destinations!")
+      UI.error("Available simulators: #{available_simulators}")
+      next
     end
     
     # Extract UDID from the destination line
@@ -111,12 +117,13 @@ platform :ios do
     
     if device_match.nil?
       UI.error("Could not parse UDID from: #{destinations}")
-      return
+      UI.error("Available simulators: #{available_simulators}")
+      next
     end
     
     device_udid = device_match[1]
     
-    UI.success("Using iPhone 16 simulator: #{device_udid}")
+    UI.success("Using iPhone simulator: #{device_udid}")
     
     # Use direct xcodebuild to avoid Fastlane's showBuildSettings timeout
     sh("xcodebuild test -project ../DynaQuiz.xcodeproj -scheme DynaQuiz -destination 'platform=iOS Simulator,id=#{device_udid}' -only-testing:DynaQuizTests -resultBundlePath test_output/DynaQuiz.xcresult -enableCodeCoverage YES")
