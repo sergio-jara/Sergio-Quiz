@@ -103,7 +103,7 @@ platform :ios do
     scan(
       workspace: "DynaQuiz.xcworkspace",
       scheme: "DynaQuiz",
-      destination: "platform=iOS Simulator,name=iPhone 16,OS=latest",
+      destination: "platform=iOS Simulator,name=iPhone 16,OS=18.0",
       clean: true,
       skip_build: false,
       result_bundle: true,
@@ -111,8 +111,8 @@ platform :ios do
       only_testing: ["DynaQuizTests"],
       skip_package_dependencies_resolution: false,
       disable_package_automatic_updates: true,
-      skip_detect_devices: true,
-      ensure_devices_found: false,
+      skip_detect_devices: false,
+      ensure_devices_found: true,
       code_coverage: true,
       output_types: "html,junit"
     )
