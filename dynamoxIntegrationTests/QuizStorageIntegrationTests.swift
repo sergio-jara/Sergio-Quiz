@@ -1,12 +1,12 @@
 //
 //  QuizStorageIntegrationTests.swift
-//  dynamoxIntegrationTests
+//  SergioIntegrationTests
 //
 //  Created by sergio jara on 05/09/25.
 //
 
 import XCTest
-@testable import dynamox
+@testable import Sergio
 
 @MainActor
 final class QuizStorageIntegrationTests: IntegrationTestBase {

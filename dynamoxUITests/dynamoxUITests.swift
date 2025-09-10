@@ -1,6 +1,6 @@
 //
-//  dynamoxUITests.swift
-//  dynamoxUITests
+//  SergioUITests.swift
+//  SergioUITests
 //
 //  Created by sergio jara on 23/08/25.
 //
@@ -8,7 +8,7 @@
 import XCTest
 
 @MainActor
-final class dynamoxUITests: XCTestCase {
+final class SergioUITests: XCTestCase {
     
     // MARK: - Properties
     private var app: XCUIApplication!

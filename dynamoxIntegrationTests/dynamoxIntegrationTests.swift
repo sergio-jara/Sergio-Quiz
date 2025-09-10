@@ -1,12 +1,12 @@
 //
-//  dynamoxIntegrationTests.swift
-//  dynamoxIntegrationTests
+//  SergioIntegrationTests.swift
+//  SergioIntegrationTests
 //
 //  Created by sergio jara on 05/09/25.
 //
 
 import XCTest
-@testable import dynamox
+@testable import Sergio
 
 /**
  * Main Integration Test Suite
@@ -26,7 +26,7 @@ import XCTest
  */
 
 @MainActor
-final class dynamoxIntegrationTests: XCTestCase {
+final class SergioIntegrationTests: XCTestCase {
     
     func testIntegrationTestSuiteSetup() throws {
         // This test verifies that the integration test suite is properly configured

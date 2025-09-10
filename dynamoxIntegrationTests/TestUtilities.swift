@@ -1,6 +1,6 @@
 //
 //  TestUtilities.swift
-//  dynamoxIntegrationTests
+//  SergioIntegrationTests
 //
 //  Created by sergio jara on 05/09/25.
 //

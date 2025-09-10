@@ -1,13 +1,13 @@
 //
-//  dynamoxUITestsLaunchTests.swift
-//  dynamoxUITests
+//  SergioUITestsLaunchTests.swift
+//  SergioUITests
 //
 //  Created by sergio jara on 23/08/25.
 //
 
 import XCTest
 
-final class dynamoxUITestsLaunchTests: XCTestCase {
+final class SergioUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

@@ -1,12 +1,12 @@
 //
 //  ResultsViewModelTests.swift
-//  dynamoxTests
+//  SergioTests
 //
 //  Created by sergio jara on 25/08/25.
 //
 
 import XCTest
-@testable import dynamox
+@testable import Sergio
 
 @MainActor
 final class ResultsViewModelTests: XCTestCase {

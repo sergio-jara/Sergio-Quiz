@@ -1,12 +1,12 @@
 //
 //  IntegrationTestBase.swift
-//  dynamoxIntegrationTests
+//  SergioIntegrationTests
 //
 //  Created by sergio jara on 05/09/25.
 //
 
 import XCTest
-@testable import dynamox
+@testable import Sergio
 
 // MARK: - Integration Test Base Class
 @MainActor

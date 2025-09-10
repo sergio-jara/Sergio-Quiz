@@ -1,11 +1,11 @@
-# Dynamox iOS Technical Challenge
+# Sergio iOS Technical Challenge
 
 ## Overview
-This is a technical challenge submission for an iOS Developer position at Dynamox.
+This is a technical challenge submission for an iOS Developer position at Sergio.
 
 ## Project Structure
 ```
-dynamox/
+Sergio/
 ├── App/                    # Main app entry points
 ├── Features/              # Feature modules (Quiz, Results, Welcome)
 ├── Shared/               # Common components and utilities
@@ -43,7 +43,7 @@ dynamox/
 1. Clone the repository
 2. Navigate to the project directory
 3. Run `pod install`
-4. Open `dynamox.xcworkspace` in Xcode
+4. Open `Sergio.xcworkspace` in Xcode
 5. Build and run the project
 
 ### Running Tests
