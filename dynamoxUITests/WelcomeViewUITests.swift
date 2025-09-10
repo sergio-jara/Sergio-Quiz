@@ -1,6 +1,6 @@
 //
 //  WelcomeViewUITests.swift
-//  dynamoxUITests
+//  SergioUITests
 //
 //  Created by sergio jara on 24/08/25.
 //

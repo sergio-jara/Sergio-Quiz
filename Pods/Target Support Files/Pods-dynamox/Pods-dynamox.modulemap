@@ -1,6 +1,0 @@
-framework module Pods_dynamox {
-  umbrella header "Pods-dynamox-umbrella.h"
-
-  export *
-  module * { export * }
-}

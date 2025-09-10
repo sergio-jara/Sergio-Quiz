@@ -1,31 +1,47 @@
 //
 //  QuizViewModelTests.swift
-//  dynamoxTests
+//  SergioTests
 //
 //  Created by sergio jara on 24/08/25.
 //
 
 import XCTest
-@testable import dynamox
+@testable import Sergio
 
 @MainActor
 final class QuizViewModelTests: XCTestCase {
     
     // MARK: - Properties
-    private var mockAPIClient: MockQuizAPIClient!
-    private var mockQuizStorageService: MockQuizStorageService!
+    private var mockStartQuizUseCase: MockStartQuizUseCase!
+    private var mockLoadNextQuestionUseCase: MockLoadNextQuestionUseCase!
+    private var mockSubmitAnswerUseCase: MockSubmitAnswerUseCase!
+    private var mockCompleteQuizUseCase: MockCompleteQuizUseCase!
+    private var mockScoreCalculationService: MockScoreCalculationService!
     private var viewModel: QuizViewModel!
     
     // MARK: - Setup and Teardown
     override func setUpWithError() throws {
-        mockAPIClient = MockQuizAPIClient()
-        mockQuizStorageService = MockQuizStorageService()
-        viewModel = QuizViewModel(apiClient: mockAPIClient, quizStorageService: mockQuizStorageService)
+        mockStartQuizUseCase = MockStartQuizUseCase()
+        mockLoadNextQuestionUseCase = MockLoadNextQuestionUseCase()
+        mockSubmitAnswerUseCase = MockSubmitAnswerUseCase()
+        mockCompleteQuizUseCase = MockCompleteQuizUseCase()
+        mockScoreCalculationService = MockScoreCalculationService()
+        
+        viewModel = QuizViewModel(
+            startQuizUseCase: mockStartQuizUseCase,
+            loadNextQuestionUseCase: mockLoadNextQuestionUseCase,
+            submitAnswerUseCase: mockSubmitAnswerUseCase,
+            completeQuizUseCase: mockCompleteQuizUseCase,
+            scoreCalculationService: mockScoreCalculationService
+        )
     }
     
     override func tearDownWithError() throws {
-        mockAPIClient = nil
-        mockQuizStorageService = nil
+        mockStartQuizUseCase = nil
+        mockLoadNextQuestionUseCase = nil
+        mockSubmitAnswerUseCase = nil
+        mockCompleteQuizUseCase = nil
+        mockScoreCalculationService = nil
         viewModel = nil
     }
     
@@ -47,12 +63,25 @@ final class QuizViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.totalQuestions, 10)
     }
     
-    func testQuizViewModelStartQuiz() throws {
+    func testQuizViewModelStartQuiz() async throws {
+        // Setup mock question
+        let mockQuestion = QuizQuestion(
+            id: "test-id",
+            statement: "What is 2+2?",
+            options: ["3", "4", "5", "6"]
+        )
+        mockStartQuizUseCase.mockQuestion = mockQuestion
+        mockStartQuizUseCase.shouldThrowError = false
+        
         // Test starting quiz with user name
         viewModel.startQuiz(with: "John")
         
+        // Wait for async operation to complete
+        try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
+        
         XCTAssertEqual(viewModel.userName, "John")
-        XCTAssertTrue(viewModel.isLoading)
+        XCTAssertEqual(viewModel.currentQuestion?.id, mockQuestion.id)
+        XCTAssertFalse(viewModel.isLoading)
         XCTAssertNil(viewModel.errorMessage)
         XCTAssertFalse(viewModel.showError)
     }
@@ -64,8 +93,8 @@ final class QuizViewModelTests: XCTestCase {
             statement: "What is 2+2?",
             options: ["3", "4", "5", "6"]
         )
-        mockAPIClient.mockQuestion = mockQuestion
-        mockAPIClient.shouldThrowError = false
+        mockLoadNextQuestionUseCase.mockQuestion = mockQuestion
+        mockLoadNextQuestionUseCase.shouldThrowError = false
         
         // Test loading question
         await viewModel.loadRandomQuestion()
@@ -83,8 +112,8 @@ final class QuizViewModelTests: XCTestCase {
     
     func testQuizViewModelLoadRandomQuestionFailure() async throws {
         // Setup mock to throw error
-        mockAPIClient.shouldThrowError = true
-        mockAPIClient.mockError = NSError(domain: "TestDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Network error"])
+        mockLoadNextQuestionUseCase.shouldThrowError = true
+        mockLoadNextQuestionUseCase.mockError = NSError(domain: "TestDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Network error"])
         
         // Test loading question with error
         await viewModel.loadRandomQuestion()
@@ -113,12 +142,11 @@ final class QuizViewModelTests: XCTestCase {
             statement: "What is 2+2?",
             options: ["3", "4", "5", "6"]
         )
-        let mockResponse = QuizAnswerResponse(result: true)
         
         viewModel.currentQuestion = mockQuestion
         viewModel.selectedAnswer = "4"
-        mockAPIClient.mockAnswerResponse = mockResponse
-        mockAPIClient.shouldThrowError = false
+        mockSubmitAnswerUseCase.mockIsCorrect = true
+        mockSubmitAnswerUseCase.shouldThrowError = false
         
         // Test submitting answer
         await viewModel.submitAnswer()
@@ -138,12 +166,11 @@ final class QuizViewModelTests: XCTestCase {
             statement: "What is 2+2?",
             options: ["3", "4", "5", "6"]
         )
-        let mockResponse = QuizAnswerResponse(result: false)
         
         viewModel.currentQuestion = mockQuestion
         viewModel.selectedAnswer = "3"
-        mockAPIClient.mockAnswerResponse = mockResponse
-        mockAPIClient.shouldThrowError = false
+        mockSubmitAnswerUseCase.mockIsCorrect = false
+        mockSubmitAnswerUseCase.shouldThrowError = false
         
         // Test submitting incorrect answer
         await viewModel.submitAnswer()
@@ -164,8 +191,8 @@ final class QuizViewModelTests: XCTestCase {
         
         viewModel.currentQuestion = mockQuestion
         viewModel.selectedAnswer = "4"
-        mockAPIClient.shouldThrowError = true
-        mockAPIClient.mockError = NSError(domain: "TestDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Submission error"])
+        mockSubmitAnswerUseCase.shouldThrowError = true
+        mockSubmitAnswerUseCase.mockError = NSError(domain: "TestDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Submission error"])
         
         // Test submitting answer with error
         await viewModel.submitAnswer()
@@ -222,8 +249,8 @@ final class QuizViewModelTests: XCTestCase {
             statement: "What is 2+2?",
             options: ["3", "4", "5", "6"]
         )
-        mockAPIClient.mockQuestion = mockQuestion
-        mockAPIClient.shouldThrowError = false
+        mockLoadNextQuestionUseCase.mockQuestion = mockQuestion
+        mockLoadNextQuestionUseCase.shouldThrowError = false
         
         // Test moving to next question
         viewModel.currentQuestionNumber = 0
@@ -273,8 +300,8 @@ final class QuizViewModelTests: XCTestCase {
             statement: "New question?",
             options: ["Yes", "No"]
         )
-        mockAPIClient.mockQuestion = mockQuestion
-        mockAPIClient.shouldThrowError = false
+        mockLoadNextQuestionUseCase.mockQuestion = mockQuestion
+        mockLoadNextQuestionUseCase.shouldThrowError = false
         
         // Test restarting quiz
         viewModel.restartQuiz()
@@ -296,20 +323,25 @@ final class QuizViewModelTests: XCTestCase {
         // Test percentage score
         XCTAssertEqual(viewModel.percentageScore, 70.0)
         
-        // Test score message for different ranges
+        // Test score message for different ranges using mock service
         viewModel.correctAnswers = 9 // 90%
+        mockScoreCalculationService.mockPerformanceLevel = .excellent
         XCTAssertEqual(viewModel.scoreMessage, "Excelente! Você é um mestre do quiz!")
         
         viewModel.correctAnswers = 8 // 80%
+        mockScoreCalculationService.mockPerformanceLevel = .great
         XCTAssertEqual(viewModel.scoreMessage, "Ótimo trabalho! Você sabe das coisas!")
         
         viewModel.correctAnswers = 6 // 60%
+        mockScoreCalculationService.mockPerformanceLevel = .good
         XCTAssertEqual(viewModel.scoreMessage, "Bom esforço! Continue aprendendo!")
         
         viewModel.correctAnswers = 4 // 40%
+        mockScoreCalculationService.mockPerformanceLevel = .fair
         XCTAssertEqual(viewModel.scoreMessage, "Nada mal! Há espaço para melhorar!")
         
         viewModel.correctAnswers = 2 // 20%
+        mockScoreCalculationService.mockPerformanceLevel = .poor
         XCTAssertEqual(viewModel.scoreMessage, "Continue praticando! Você vai melhorar!")
     }
     
@@ -337,61 +369,74 @@ final class QuizViewModelTests: XCTestCase {
     }
 }
 
-// MARK: - Mock Quiz Storage Service
-@MainActor
-private class MockQuizStorageService: QuizStorageServiceProtocol {
-    var mockResults: [QuizResult] = []
-    var shouldThrowError = false
-    var mockError: Error?
-    
-    func saveQuizResult(_ result: QuizResult) {
-        if shouldThrowError {
-            // In a real scenario, this might throw an error
-            // For now, we'll just simulate success
-        }
-        // The mock doesn't actually persist data, just stores it for testing
-        mockResults.append(result)
-    }
-    
-    func loadQuizResults() -> [QuizResult] {
-        if shouldThrowError {
-            // In a real scenario, this might throw an error
-            // For now, we'll just return empty array
-            return []
-        }
-        return mockResults
-    }
-    
-    func getTotalQuizzes() -> Int {
-        return mockResults.count
-    }
-    
-    func getAverageScore() -> Int {
-        guard !mockResults.isEmpty else { return 0 }
-        let totalScore = mockResults.reduce(0) { $0 + $1.score }
-        return totalScore / mockResults.count
-    }
-}
+// MARK: - Mock Use Cases and Services
 
-// MARK: - Mock Quiz API Client
 @MainActor
-private class MockQuizAPIClient: QuizAPIClientProtocol {
+private class MockStartQuizUseCase: StartQuizUseCaseProtocol {
     var mockQuestion: QuizQuestion?
-    var mockAnswerResponse: QuizAnswerResponse?
     var shouldThrowError = false
     var mockError: Error?
     
-    func fetchRandomQuestion() async throws -> QuizQuestion {
+    func execute(userName: String) async throws -> QuizQuestion {
         if shouldThrowError {
             throw mockError ?? NSError(domain: "MockError", code: 1, userInfo: nil)
         }
         return mockQuestion ?? QuizQuestion(id: "mock", statement: "Mock question?", options: ["A", "B", "C", "D"])
     }
+}
+
+@MainActor
+private class MockLoadNextQuestionUseCase: LoadNextQuestionUseCaseProtocol {
+    var mockQuestion: QuizQuestion?
+    var shouldThrowError = false
+    var mockError: Error?
     
-    func submitAnswer(questionId: String, answer: String) async throws -> QuizAnswerResponse {
+    func execute() async throws -> QuizQuestion {
         if shouldThrowError {
             throw mockError ?? NSError(domain: "MockError", code: 1, userInfo: nil)
         }
-        return mockAnswerResponse ?? QuizAnswerResponse(result: true)
+        return mockQuestion ?? QuizQuestion(id: "mock", statement: "Mock question?", options: ["A", "B", "C", "D"])
+    }
+}
+
+@MainActor
+private class MockSubmitAnswerUseCase: SubmitAnswerUseCaseProtocol {
+    var mockIsCorrect: Bool = true
+    var shouldThrowError = false
+    var mockError: Error?
+    
+    func execute(questionId: String, answer: String) async throws -> Bool {
+        if shouldThrowError {
+            throw mockError ?? NSError(domain: "MockError", code: 1, userInfo: nil)
+        }
+        return mockIsCorrect
+    }
+}
+
+@MainActor
+private class MockCompleteQuizUseCase: CompleteQuizUseCaseProtocol {
+    var mockResult: QuizResult?
+    var shouldThrowError = false
+    var mockError: Error?
+    
+    func execute(userName: String, correctAnswers: Int, totalQuestions: Int) async throws -> QuizResult {
+        if shouldThrowError {
+            throw mockError ?? NSError(domain: "MockError", code: 1, userInfo: nil)
+        }
+        return mockResult ?? QuizResult(userName: userName, score: 80, correctAnswers: correctAnswers, totalQuestions: totalQuestions)
+    }
+}
+
+@MainActor
+private class MockScoreCalculationService: ScoreCalculationServiceProtocol {
+            nonisolated(unsafe) var mockPerformanceLevel: PerformanceLevel = .good
+    
+    nonisolated func calculateScore(correctAnswers: Int, totalQuestions: Int) -> Int {
+        guard totalQuestions > 0 else { return 0 }
+        return Int(Double(correctAnswers) / Double(totalQuestions) * 100)
+    }
+    
+    nonisolated func evaluatePerformance(score: Int) -> PerformanceLevel {
+        return mockPerformanceLevel
     }
 }

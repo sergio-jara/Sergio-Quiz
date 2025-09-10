@@ -7,57 +7,70 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17A764947F6C6DFE71B8DB36 /* libPods-dynamoxUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1845CD4F27B6FF3083E78CE8 /* libPods-dynamoxUITests.a */; };
-		1901AD4A0D72BF01D1B7B551 /* libPods-dynamoxTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7879151BF043A5B6F1F9A937 /* libPods-dynamoxTests.a */; };
-		4D7DD151FA96A0293B0B919C /* Pods_dynamox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A14CF59B1BD17F0F3FDD72 /* Pods_dynamox.framework */; };
+		17A764947F6C6DFE71B8DB36 /* libPods-SergioUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1845CD4F27B6FF3083E78CE8 /* libPods-SergioUITests.a */; };
+		1901AD4A0D72BF01D1B7B551 /* libPods-SergioTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7879151BF043A5B6F1F9A937 /* libPods-SergioTests.a */; };
+		4D7DD151FA96A0293B0B919C /* Pods_Sergio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A14CF59B1BD17F0F3FDD72 /* Pods_Sergio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1A6C61DA2E6AFB1D00FCDC4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A0531A42E5A5F6A0076047B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A0531AB2E5A5F6A0076047B;
+			remoteInfo = Sergio;
+		};
 		1A80E6982E5A686F00175BD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1A0531A42E5A5F6A0076047B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1A0531AB2E5A5F6A0076047B;
-			remoteInfo = dynamox;
+			remoteInfo = Sergio;
 		};
 		1A80E6A72E5A688E00175BD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1A0531A42E5A5F6A0076047B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1A0531AB2E5A5F6A0076047B;
-			remoteInfo = dynamox;
+			remoteInfo = Sergio;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1845CD4F27B6FF3083E78CE8 /* libPods-dynamoxUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dynamoxUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A0531AC2E5A5F6A0076047B /* dynamox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dynamox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A80E6942E5A686F00175BD9 /* dynamoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dynamoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A80E6A12E5A688E00175BD9 /* dynamoxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dynamoxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		39A14CF59B1BD17F0F3FDD72 /* Pods_dynamox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dynamox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7431A9F8BAFA34F1C1E85BD5 /* Pods-dynamoxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dynamoxTests.debug.xcconfig"; path = "Target Support Files/Pods-dynamoxTests/Pods-dynamoxTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7879151BF043A5B6F1F9A937 /* libPods-dynamoxTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dynamoxTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7FABD6DC3228561C65001579 /* Pods-dynamoxUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dynamoxUITests.release.xcconfig"; path = "Target Support Files/Pods-dynamoxUITests/Pods-dynamoxUITests.release.xcconfig"; sourceTree = "<group>"; };
-		83352CB1559B6907C23F0EB8 /* Pods-dynamox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dynamox.release.xcconfig"; path = "Target Support Files/Pods-dynamox/Pods-dynamox.release.xcconfig"; sourceTree = "<group>"; };
-		9B9395FF99C5348AAF90112C /* Pods-dynamoxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dynamoxTests.release.xcconfig"; path = "Target Support Files/Pods-dynamoxTests/Pods-dynamoxTests.release.xcconfig"; sourceTree = "<group>"; };
-		9EC87AEF8F0E47A55E427CA7 /* Pods-dynamoxUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dynamoxUITests.debug.xcconfig"; path = "Target Support Files/Pods-dynamoxUITests/Pods-dynamoxUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		AC15A3EE2B4E93A3345CEAA7 /* Pods-dynamox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dynamox.debug.xcconfig"; path = "Target Support Files/Pods-dynamox/Pods-dynamox.debug.xcconfig"; sourceTree = "<group>"; };
+		1845CD4F27B6FF3083E78CE8 /* libPods-SergioUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SergioUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0531AC2E5A5F6A0076047B /* Sergio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sergio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A6C61D62E6AFB1D00FCDC4F /* SergioIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SergioIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A80E6942E5A686F00175BD9 /* SergioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SergioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A80E6A12E5A688E00175BD9 /* SergioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SergioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		39A14CF59B1BD17F0F3FDD72 /* Pods_Sergio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sergio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7431A9F8BAFA34F1C1E85BD5 /* Pods-SergioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SergioTests.debug.xcconfig"; path = "Target Support Files/Pods-SergioTests/Pods-SergioTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7879151BF043A5B6F1F9A937 /* libPods-SergioTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SergioTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FABD6DC3228561C65001579 /* Pods-SergioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SergioUITests.release.xcconfig"; path = "Target Support Files/Pods-SergioUITests/Pods-SergioUITests.release.xcconfig"; sourceTree = "<group>"; };
+		83352CB1559B6907C23F0EB8 /* Pods-Sergio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sergio.release.xcconfig"; path = "Target Support Files/Pods-Sergio/Pods-Sergio.release.xcconfig"; sourceTree = "<group>"; };
+		9B9395FF99C5348AAF90112C /* Pods-SergioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SergioTests.release.xcconfig"; path = "Target Support Files/Pods-SergioTests/Pods-SergioTests.release.xcconfig"; sourceTree = "<group>"; };
+		9EC87AEF8F0E47A55E427CA7 /* Pods-SergioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SergioUITests.debug.xcconfig"; path = "Target Support Files/Pods-SergioUITests/Pods-SergioUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		AC15A3EE2B4E93A3345CEAA7 /* Pods-Sergio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sergio.debug.xcconfig"; path = "Target Support Files/Pods-Sergio/Pods-Sergio.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		1A0531AE2E5A5F6A0076047B /* dynamox */ = {
+		1A0531AE2E5A5F6A0076047B /* Sergio */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = dynamox;
+			path = Sergio;
 			sourceTree = "<group>";
 		};
-		1A80E6952E5A686F00175BD9 /* dynamoxTests */ = {
+		1A6C61D72E6AFB1D00FCDC4F /* SergioIntegrationTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = dynamoxTests;
+			path = SergioIntegrationTests;
 			sourceTree = "<group>";
 		};
-		1A80E6A22E5A688E00175BD9 /* dynamoxUITests */ = {
+		1A80E6952E5A686F00175BD9 /* SergioTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = dynamoxUITests;
+			path = SergioTests;
+			sourceTree = "<group>";
+		};
+		1A80E6A22E5A688E00175BD9 /* SergioUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SergioUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -67,7 +80,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D7DD151FA96A0293B0B919C /* Pods_dynamox.framework in Frameworks */,
+				4D7DD151FA96A0293B0B919C /* Pods_Sergio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A6C61D32E6AFB1D00FCDC4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1901AD4A0D72BF01D1B7B551 /* libPods-dynamoxTests.a in Frameworks */,
+				1901AD4A0D72BF01D1B7B551 /* libPods-SergioTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17A764947F6C6DFE71B8DB36 /* libPods-dynamoxUITests.a in Frameworks */,
+				17A764947F6C6DFE71B8DB36 /* libPods-SergioUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,9 +113,10 @@
 		1A0531A32E5A5F6A0076047B = {
 			isa = PBXGroup;
 			children = (
-				1A0531AE2E5A5F6A0076047B /* dynamox */,
-				1A80E6952E5A686F00175BD9 /* dynamoxTests */,
-				1A80E6A22E5A688E00175BD9 /* dynamoxUITests */,
+				1A0531AE2E5A5F6A0076047B /* Sergio */,
+				1A80E6952E5A686F00175BD9 /* SergioTests */,
+				1A80E6A22E5A688E00175BD9 /* SergioUITests */,
+				1A6C61D72E6AFB1D00FCDC4F /* SergioIntegrationTests */,
 				1A0531AD2E5A5F6A0076047B /* Products */,
 				C58EAADAB18C70B515A0EDCA /* Pods */,
 				44833F7215D9883B3EABDE3E /* Frameworks */,
@@ -105,9 +126,10 @@
 		1A0531AD2E5A5F6A0076047B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A0531AC2E5A5F6A0076047B /* dynamox.app */,
-				1A80E6942E5A686F00175BD9 /* dynamoxTests.xctest */,
-				1A80E6A12E5A688E00175BD9 /* dynamoxUITests.xctest */,
+				1A0531AC2E5A5F6A0076047B /* Sergio.app */,
+				1A80E6942E5A686F00175BD9 /* SergioTests.xctest */,
+				1A80E6A12E5A688E00175BD9 /* SergioUITests.xctest */,
+				1A6C61D62E6AFB1D00FCDC4F /* SergioIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,9 +137,9 @@
 		44833F7215D9883B3EABDE3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				39A14CF59B1BD17F0F3FDD72 /* Pods_dynamox.framework */,
-				7879151BF043A5B6F1F9A937 /* libPods-dynamoxTests.a */,
-				1845CD4F27B6FF3083E78CE8 /* libPods-dynamoxUITests.a */,
+				39A14CF59B1BD17F0F3FDD72 /* Pods_Sergio.framework */,
+				7879151BF043A5B6F1F9A937 /* libPods-SergioTests.a */,
+				1845CD4F27B6FF3083E78CE8 /* libPods-SergioUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,12 +147,12 @@
 		C58EAADAB18C70B515A0EDCA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AC15A3EE2B4E93A3345CEAA7 /* Pods-dynamox.debug.xcconfig */,
-				83352CB1559B6907C23F0EB8 /* Pods-dynamox.release.xcconfig */,
-				7431A9F8BAFA34F1C1E85BD5 /* Pods-dynamoxTests.debug.xcconfig */,
-				9B9395FF99C5348AAF90112C /* Pods-dynamoxTests.release.xcconfig */,
-				9EC87AEF8F0E47A55E427CA7 /* Pods-dynamoxUITests.debug.xcconfig */,
-				7FABD6DC3228561C65001579 /* Pods-dynamoxUITests.release.xcconfig */,
+				AC15A3EE2B4E93A3345CEAA7 /* Pods-Sergio.debug.xcconfig */,
+				83352CB1559B6907C23F0EB8 /* Pods-Sergio.release.xcconfig */,
+				7431A9F8BAFA34F1C1E85BD5 /* Pods-SergioTests.debug.xcconfig */,
+				9B9395FF99C5348AAF90112C /* Pods-SergioTests.release.xcconfig */,
+				9EC87AEF8F0E47A55E427CA7 /* Pods-SergioUITests.debug.xcconfig */,
+				7FABD6DC3228561C65001579 /* Pods-SergioUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -138,9 +160,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1A0531AB2E5A5F6A0076047B /* dynamox */ = {
+		1A0531AB2E5A5F6A0076047B /* Sergio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A0531B72E5A5F6C0076047B /* Build configuration list for PBXNativeTarget "dynamox" */;
+			buildConfigurationList = 1A0531B72E5A5F6C0076047B /* Build configuration list for PBXNativeTarget "Sergio" */;
 			buildPhases = (
 				98C75EB4202485F37D0A2BF5 /* [CP] Check Pods Manifest.lock */,
 				1A0531A82E5A5F6A0076047B /* Sources */,
@@ -153,16 +175,39 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				1A0531AE2E5A5F6A0076047B /* dynamox */,
+				1A0531AE2E5A5F6A0076047B /* Sergio */,
 			);
-			name = dynamox;
-			productName = dynamox;
-			productReference = 1A0531AC2E5A5F6A0076047B /* dynamox.app */;
+			name = Sergio;
+			productName = Sergio;
+			productReference = 1A0531AC2E5A5F6A0076047B /* Sergio.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1A80E6932E5A686F00175BD9 /* dynamoxTests */ = {
+		1A6C61D52E6AFB1D00FCDC4F /* SergioIntegrationTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A80E69C2E5A686F00175BD9 /* Build configuration list for PBXNativeTarget "dynamoxTests" */;
+			buildConfigurationList = 1A6C61DC2E6AFB1D00FCDC4F /* Build configuration list for PBXNativeTarget "SergioIntegrationTests" */;
+			buildPhases = (
+				1A6C61D22E6AFB1D00FCDC4F /* Sources */,
+				1A6C61D32E6AFB1D00FCDC4F /* Frameworks */,
+				1A6C61D42E6AFB1D00FCDC4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A6C61DB2E6AFB1D00FCDC4F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1A6C61D72E6AFB1D00FCDC4F /* SergioIntegrationTests */,
+			);
+			name = SergioIntegrationTests;
+			packageProductDependencies = (
+			);
+			productName = SergioIntegrationTests;
+			productReference = 1A6C61D62E6AFB1D00FCDC4F /* SergioIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1A80E6932E5A686F00175BD9 /* SergioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A80E69C2E5A686F00175BD9 /* Build configuration list for PBXNativeTarget "SergioTests" */;
 			buildPhases = (
 				5591C73D3CD1BA4389883632 /* [CP] Check Pods Manifest.lock */,
 				1A80E6902E5A686F00175BD9 /* Sources */,
@@ -175,16 +220,16 @@
 				1A80E6992E5A686F00175BD9 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				1A80E6952E5A686F00175BD9 /* dynamoxTests */,
+				1A80E6952E5A686F00175BD9 /* SergioTests */,
 			);
-			name = dynamoxTests;
-			productName = dynamoxTests;
-			productReference = 1A80E6942E5A686F00175BD9 /* dynamoxTests.xctest */;
+			name = SergioTests;
+			productName = SergioTests;
+			productReference = 1A80E6942E5A686F00175BD9 /* SergioTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1A80E6A02E5A688E00175BD9 /* dynamoxUITests */ = {
+		1A80E6A02E5A688E00175BD9 /* SergioUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A80E6A92E5A688E00175BD9 /* Build configuration list for PBXNativeTarget "dynamoxUITests" */;
+			buildConfigurationList = 1A80E6A92E5A688E00175BD9 /* Build configuration list for PBXNativeTarget "SergioUITests" */;
 			buildPhases = (
 				DC2B1065EBA212C857014929 /* [CP] Check Pods Manifest.lock */,
 				1A80E69D2E5A688E00175BD9 /* Sources */,
@@ -197,11 +242,11 @@
 				1A80E6A82E5A688E00175BD9 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				1A80E6A22E5A688E00175BD9 /* dynamoxUITests */,
+				1A80E6A22E5A688E00175BD9 /* SergioUITests */,
 			);
-			name = dynamoxUITests;
-			productName = dynamoxUITests;
-			productReference = 1A80E6A12E5A688E00175BD9 /* dynamoxUITests.xctest */;
+			name = SergioUITests;
+			productName = SergioUITests;
+			productReference = 1A80E6A12E5A688E00175BD9 /* SergioUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -217,6 +262,10 @@
 					1A0531AB2E5A5F6A0076047B = {
 						CreatedOnToolsVersion = 16.4;
 					};
+					1A6C61D52E6AFB1D00FCDC4F = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 1A0531AB2E5A5F6A0076047B;
+					};
 					1A80E6932E5A686F00175BD9 = {
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = 1A0531AB2E5A5F6A0076047B;
@@ -227,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1A0531A72E5A5F6A0076047B /* Build configuration list for PBXProject "dynamox" */;
+			buildConfigurationList = 1A0531A72E5A5F6A0076047B /* Build configuration list for PBXProject "Sergio" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -241,15 +290,23 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1A0531AB2E5A5F6A0076047B /* dynamox */,
-				1A80E6932E5A686F00175BD9 /* dynamoxTests */,
-				1A80E6A02E5A688E00175BD9 /* dynamoxUITests */,
+				1A0531AB2E5A5F6A0076047B /* Sergio */,
+				1A80E6932E5A686F00175BD9 /* SergioTests */,
+				1A80E6A02E5A688E00175BD9 /* SergioUITests */,
+				1A6C61D52E6AFB1D00FCDC4F /* SergioIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1A0531AA2E5A5F6A0076047B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A6C61D42E6AFB1D00FCDC4F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -279,19 +336,19 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dynamox/Pods-dynamox-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Sergio/Pods-Sergio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dynamox/Pods-dynamox-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Sergio/Pods-Sergio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dynamox/Pods-dynamox-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sergio/Pods-Sergio-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5591C73D3CD1BA4389883632 /* [CP] Check Pods Manifest.lock */ = {
@@ -309,7 +366,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-dynamoxTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SergioTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -331,7 +388,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-dynamox-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Sergio-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -353,7 +410,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-dynamoxUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SergioUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -364,6 +421,13 @@
 
 /* Begin PBXSourcesBuildPhase section */
 		1A0531A82E5A5F6A0076047B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A6C61D22E6AFB1D00FCDC4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -387,14 +451,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1A6C61DB2E6AFB1D00FCDC4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A0531AB2E5A5F6A0076047B /* Sergio */;
+			targetProxy = 1A6C61DA2E6AFB1D00FCDC4F /* PBXContainerItemProxy */;
+		};
 		1A80E6992E5A686F00175BD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1A0531AB2E5A5F6A0076047B /* dynamox */;
+			target = 1A0531AB2E5A5F6A0076047B /* Sergio */;
 			targetProxy = 1A80E6982E5A686F00175BD9 /* PBXContainerItemProxy */;
 		};
 		1A80E6A82E5A688E00175BD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1A0531AB2E5A5F6A0076047B /* dynamox */;
+			target = 1A0531AB2E5A5F6A0076047B /* Sergio */;
 			targetProxy = 1A80E6A72E5A688E00175BD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -523,7 +592,7 @@
 		};
 		1A0531B82E5A5F6C0076047B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC15A3EE2B4E93A3345CEAA7 /* Pods-dynamox.debug.xcconfig */;
+			baseConfigurationReference = AC15A3EE2B4E93A3345CEAA7 /* Pods-Sergio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -533,7 +602,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Quiz Dynamox";
+				INFOPLIST_KEY_CFBundleDisplayName = "Quiz Sergio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -544,7 +613,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.dynamox;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.Sergio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -554,7 +623,7 @@
 		};
 		1A0531B92E5A5F6C0076047B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83352CB1559B6907C23F0EB8 /* Pods-dynamox.release.xcconfig */;
+			baseConfigurationReference = 83352CB1559B6907C23F0EB8 /* Pods-Sergio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -564,7 +633,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Quiz Dynamox";
+				INFOPLIST_KEY_CFBundleDisplayName = "Quiz Sergio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -575,7 +644,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.dynamox;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.Sergio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -583,9 +652,47 @@
 			};
 			name = Release;
 		};
+		1A6C61DD2E6AFB1D00FCDC4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6Y5Z2UT5Z4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.SergioIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sergio.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sergio";
+			};
+			name = Debug;
+		};
+		1A6C61DE2E6AFB1D00FCDC4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6Y5Z2UT5Z4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.SergioIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sergio.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sergio";
+			};
+			name = Release;
+		};
 		1A80E69A2E5A686F00175BD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7431A9F8BAFA34F1C1E85BD5 /* Pods-dynamoxTests.debug.xcconfig */;
+			baseConfigurationReference = 7431A9F8BAFA34F1C1E85BD5 /* Pods-SergioTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -594,18 +701,18 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.dynamoxTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.SergioTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dynamox.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/dynamox";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sergio.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sergio";
 			};
 			name = Debug;
 		};
 		1A80E69B2E5A686F00175BD9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B9395FF99C5348AAF90112C /* Pods-dynamoxTests.release.xcconfig */;
+			baseConfigurationReference = 9B9395FF99C5348AAF90112C /* Pods-SergioTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -614,55 +721,55 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.dynamoxTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.SergioTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dynamox.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/dynamox";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sergio.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sergio";
 			};
 			name = Release;
 		};
 		1A80E6AA2E5A688E00175BD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9EC87AEF8F0E47A55E427CA7 /* Pods-dynamoxUITests.debug.xcconfig */;
+			baseConfigurationReference = 9EC87AEF8F0E47A55E427CA7 /* Pods-SergioUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Y5Z2UT5Z4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.dynamoxUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.SergioUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = dynamox;
+				TEST_TARGET_NAME = Sergio;
 			};
 			name = Debug;
 		};
 		1A80E6AB2E5A688E00175BD9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FABD6DC3228561C65001579 /* Pods-dynamoxUITests.release.xcconfig */;
+			baseConfigurationReference = 7FABD6DC3228561C65001579 /* Pods-SergioUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Y5Z2UT5Z4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.dynamoxUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergio.SergioUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = dynamox;
+				TEST_TARGET_NAME = Sergio;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A0531A72E5A5F6A0076047B /* Build configuration list for PBXProject "dynamox" */ = {
+		1A0531A72E5A5F6A0076047B /* Build configuration list for PBXProject "Sergio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A0531B52E5A5F6C0076047B /* Debug */,
@@ -671,7 +778,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A0531B72E5A5F6C0076047B /* Build configuration list for PBXNativeTarget "dynamox" */ = {
+		1A0531B72E5A5F6C0076047B /* Build configuration list for PBXNativeTarget "Sergio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A0531B82E5A5F6C0076047B /* Debug */,
@@ -680,7 +787,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A80E69C2E5A686F00175BD9 /* Build configuration list for PBXNativeTarget "dynamoxTests" */ = {
+		1A6C61DC2E6AFB1D00FCDC4F /* Build configuration list for PBXNativeTarget "SergioIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A6C61DD2E6AFB1D00FCDC4F /* Debug */,
+				1A6C61DE2E6AFB1D00FCDC4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A80E69C2E5A686F00175BD9 /* Build configuration list for PBXNativeTarget "SergioTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A80E69A2E5A686F00175BD9 /* Debug */,
@@ -689,7 +805,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A80E6A92E5A688E00175BD9 /* Build configuration list for PBXNativeTarget "dynamoxUITests" */ = {
+		1A80E6A92E5A688E00175BD9 /* Build configuration list for PBXNativeTarget "SergioUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A80E6AA2E5A688E00175BD9 /* Debug */,
