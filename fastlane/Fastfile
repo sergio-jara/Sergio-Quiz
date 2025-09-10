@@ -96,19 +96,8 @@ platform :ios do
 
   desc "GitHub Actions - unit tests only (simple and robust)"
   lane :github_actions do
-    scan(
-      project: "DynaQuiz.xcodeproj",
-      scheme: "DynaQuiz",
-      destination: "platform=iOS Simulator,OS=latest",
-      clean: true,
-      result_bundle: true,
-      output_directory: "test_output",
-      only_testing: ["DynaQuizTests"],
-      disable_slide_to_type: false,
-      xcargs: "-destination-timeout 180",
-      code_coverage: true,
-      output_types: "html,junit"
-    )
+    # Use direct xcodebuild to avoid Fastlane's showBuildSettings timeout
+    sh("xcodebuild test -project DynaQuiz.xcodeproj -scheme DynaQuiz -destination 'platform=iOS Simulator,OS=latest' -only-testing:DynaQuizTests -resultBundlePath test_output/DynaQuiz.xcresult -enableCodeCoverage YES")
   end
 
   desc "Run tests with detailed coverage report"
