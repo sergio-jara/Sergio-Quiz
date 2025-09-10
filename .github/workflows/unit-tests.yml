@@ -35,13 +35,14 @@ jobs:
         
     - name: Generate Coverage Report
       run: |
+        cd fastlane
         xcrun xccov view --report test_output/DynaQuiz.xcresult > test_output/coverage.txt
         
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
         name: unit-test-results
-        path: test_output/
+        path: fastlane/test_output/
         retention-days: 7
         
     - name: Comment Coverage on PR
@@ -51,7 +52,7 @@ jobs:
         script: |
           const fs = require('fs');
           try {
-            const coverage = fs.readFileSync('test_output/coverage.txt', 'utf8');
+            const coverage = fs.readFileSync('fastlane/test_output/coverage.txt', 'utf8');
             const lines = coverage.split('\n');
             const summaryLine = lines.find(line => line.includes('Total Coverage:'));
             
