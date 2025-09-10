@@ -94,44 +94,18 @@ platform :ios do
     )
   end
 
-  desc "GitHub Actions - unit tests only (robust)"
+  desc "GitHub Actions - unit tests only (simple and robust)"
   lane :github_actions do
-    require "json"
-
-    # 1) Pick newest available iOS runtime on the runner
-    runtimes_json = sh("xcrun simctl list runtimes --json", log: false)
-    runtimes = JSON.parse(runtimes_json)["runtimes"]
-    ios_runtimes = runtimes.select { |r| r["identifier"].include?("com.apple.CoreSimulator.SimRuntime.iOS") && r["isAvailable"] }
-    UI.user_error!("No iOS simulator runtimes installed") if ios_runtimes.empty?
-    runtime = ios_runtimes.max_by { |r| Gem::Version.new(r["version"]) }
-
-    # 2) Find or create an iPhone in that runtime
-    devices_json = sh("xcrun simctl list devices --json", log: false)
-    devices_all = JSON.parse(devices_json)["devices"][runtime["identifier"]] || []
-    device = devices_all.find { |d| d["isAvailable"] && d["name"].include?("iPhone") }
-
-    if device.nil?
-      # Create a common type that exists on almost all images
-      devicetype = "iPhone 15 Pro"
-      UI.message "No iPhone device found in #{runtime['name']}, creating #{devicetype}…"
-      udid = sh(%Q[xcrun simctl create "CI iPhone" "#{devicetype}" "#{runtime['identifier']}"], log: false).strip
-    else
-      udid = device["udid"]
-    end
-
-    # 3) Boot & wait
-    sh("xcrun simctl boot #{udid}", log: false) rescue nil
-    sh("xcrun simctl bootstatus #{udid} -b")
-
-    # 4) Run tests targeting that specific simulator
     scan(
       project: "DynaQuiz.xcodeproj",
       scheme: "DynaQuiz",
-      destination: "platform=iOS Simulator,id=#{udid}",
+      destination: "platform=iOS Simulator,OS=latest",
       clean: true,
       result_bundle: true,
       output_directory: "test_output",
       only_testing: ["DynaQuizTests"],
+      disable_slide_to_type: false,
+      xcargs: "-destination-timeout 180",
       code_coverage: true,
       output_types: "html,junit"
     )
